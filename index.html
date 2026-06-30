@@ -795,170 +795,87 @@
       color: var(--blue);
     }
 
-    .work-tabs {
+    /* ---- Asymmetric work grid (DEPT-style) ---- */
+    .work-grid {
       display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 32px;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 32px;
+      row-gap: clamp(48px, 6vw, 96px);
+      align-items: start;
     }
 
-    .work-tablist {
-      display: flex;
-      flex-direction: column;
+    .wcard {
+      display: block;
+      text-decoration: none;
+      color: inherit;
     }
 
-    .work-tab {
+    /* asymmetric placement + vertical offsets */
+    .wcard:nth-child(1) { grid-column: 1 / span 7; }
+    .wcard:nth-child(2) { grid-column: 9 / span 4; margin-top: clamp(60px, 9vw, 150px); }
+    .wcard:nth-child(3) { grid-column: 1 / span 4; }
+    .wcard:nth-child(4) { grid-column: 6 / span 7; margin-top: clamp(-40px, -3vw, 0px); }
+    .wcard:nth-child(5) { grid-column: 1 / span 7; margin-top: clamp(40px, 6vw, 90px); }
+    .wcard:nth-child(6) { grid-column: 9 / span 4; }
+
+    .wcard .shot {
       position: relative;
-      text-align: left;
-      background: none;
-      border: none;
-      border-top: 1px solid var(--line);
-      padding: 22px 8px;
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--bg-3);
+    }
+
+    .wcard .shot img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .9s cubic-bezier(.2, 1, .2, 1);
+    }
+
+    .wcard:hover .shot img {
+      transform: scale(1.05);
+    }
+
+    /* varied aspect ratios for editorial rhythm */
+    .wcard:nth-child(1) .shot { aspect-ratio: 4 / 3; }
+    .wcard:nth-child(2) .shot { aspect-ratio: 3 / 4; }
+    .wcard:nth-child(3) .shot { aspect-ratio: 3 / 4; }
+    .wcard:nth-child(4) .shot { aspect-ratio: 16 / 10; }
+    .wcard:nth-child(5) .shot { aspect-ratio: 5 / 4; }
+    .wcard:nth-child(6) .shot { aspect-ratio: 3 / 4; }
+
+    .wcard .wc-meta {
       display: flex;
-      flex-direction: column;
-      gap: 5px;
-      transition: padding-left .3s, color .3s;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 18px;
     }
 
-    .work-tablist .work-tab:last-child {
-      border-bottom: 1px solid var(--line);
-    }
-
-    .work-tab .wt-name {
+    .wcard .wc-title {
       font-family: var(--display);
       font-weight: 800;
       text-transform: uppercase;
-      font-size: clamp(20px, 1.8vw, 27px);
+      font-size: clamp(22px, 2.4vw, 38px);
       line-height: 1;
-      color: var(--ink-3);
+      letter-spacing: -0.01em;
       transition: color .3s;
     }
 
-    .work-tab .wt-tag {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--ink-3);
-    }
-
-    .work-tab:hover .wt-name {
-      color: var(--ink);
-    }
-
-    .work-tab.active {
-      padding-left: 22px;
-    }
-
-    .work-tab.active::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--blue);
-    }
-
-    .work-tab.active .wt-name {
-      color: var(--ink);
-    }
-
-    .work-tab.active .wt-tag {
+    .wcard:hover .wc-title {
       color: var(--blue);
     }
 
-    .work-stage {
-      position: relative;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      min-height: 540px;
-      background: var(--bg-2);
-    }
-
-    .work-panel {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      opacity: 0;
-      visibility: hidden;
-      transform: scale(1.03);
-      transition: opacity .5s, transform .7s cubic-bezier(.2, 1, .2, 1), visibility .5s;
-    }
-
-    .work-panel.active {
-      opacity: 1;
-      visibility: visible;
-      transform: scale(1);
-    }
-
-    .wp-shot {
-      position: absolute;
-      inset: 0;
-      background: var(--bg-3) center/cover no-repeat;
-      transition: transform .8s cubic-bezier(.2, 1, .2, 1);
-    }
-
-    .wp-shot.is-logo {
-      background-size: clamp(140px, 30%, 260px);
-    }
-
-    .work-panel:hover .wp-shot {
-      transform: scale(1.04);
-    }
-
-    .wp-shot::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(10, 10, 10, .78), rgba(10, 10, 10, .05) 60%);
-    }
-
-    .wp-shot.is-logo::after {
-      background: linear-gradient(to top, rgba(10, 10, 10, .6), rgba(255, 255, 255, .1));
-    }
-
-    .wp-meta {
-      position: relative;
-      z-index: 2;
-      padding: 40px;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    .wp-badge {
-      font-size: 11px;
+    .wcard .wc-tag {
+      flex: none;
+      font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      background: var(--lime);
-      color: var(--ink);
-      padding: 6px 12px;
-      border-radius: 999px;
-    }
-
-    .wp-title {
-      font-family: var(--display);
-      font-weight: 900;
-      text-transform: uppercase;
-      font-size: clamp(30px, 4vw, 56px);
-      line-height: 0.92;
-    }
-
-    .wp-desc {
-      font-size: 16px;
-      line-height: 1.5;
-      color: rgba(255, 255, 255, .86);
-      max-width: 48ch;
-    }
-
-    .wp-link {
-      margin-top: 6px;
-      color: var(--lime);
+      color: var(--ink-2);
+      padding-top: 4px;
     }
 
     /* ============ SOLUTIONS (full-bleed rows) ============ */
@@ -1444,13 +1361,16 @@
         min-height: 320px;
       }
 
-      .work-tabs {
-        grid-template-columns: 1fr;
+      .work-grid {
+        column-gap: 20px;
+        row-gap: 40px;
       }
 
-      .work-stage {
-        min-height: 420px;
-      }
+      /* tablet: two even columns, reset offsets */
+      .work-grid .wcard:nth-child(odd) { grid-column: 1 / span 6; }
+      .work-grid .wcard:nth-child(even) { grid-column: 7 / span 6; }
+      .work-grid .wcard { margin-top: 0 !important; }
+      .work-grid .wcard .shot { aspect-ratio: 3 / 4 !important; }
 
       .sol-row {
         grid-template-columns: 1fr;
@@ -1506,6 +1426,16 @@
 
       .footer-top {
         grid-template-columns: 1fr;
+      }
+
+      .work-grid .wcard,
+      .work-grid .wcard:nth-child(odd),
+      .work-grid .wcard:nth-child(even) {
+        grid-column: 1 / -1;
+      }
+
+      .work-grid .wcard .shot {
+        aspect-ratio: 4 / 5 !important;
       }
     }
   </style>
@@ -1697,91 +1627,49 @@
         </p>
       </div>
 
-      <div class="work-tabs reveal" data-delay="2">
-        <div class="work-tablist" role="tablist" aria-label="Selected projects">
-          <button class="work-tab active" type="button" role="tab" aria-selected="true">
-            <span class="wt-name">Atlantic Containers</span>
-            <span class="wt-tag">Paid · CRO · Analytics</span>
-          </button>
-          <button class="work-tab" type="button" role="tab" aria-selected="false">
-            <span class="wt-name">Mancru</span>
-            <span class="wt-tag">Performance</span>
-          </button>
-          <button class="work-tab" type="button" role="tab" aria-selected="false">
-            <span class="wt-name">Galería 6280</span>
-            <span class="wt-tag">Social · Content</span>
-          </button>
-          <button class="work-tab" type="button" role="tab" aria-selected="false">
-            <span class="wt-name">Smash Padel Club</span>
-            <span class="wt-tag">Brand · Web</span>
-          </button>
-          <button class="work-tab" type="button" role="tab" aria-selected="false">
-            <span class="wt-name">Entrenate</span>
-            <span class="wt-tag">Social · Paid</span>
-          </button>
-          <button class="work-tab" type="button" role="tab" aria-selected="false">
-            <span class="wt-name">Amelie</span>
-            <span class="wt-tag">Brand · Web</span>
-          </button>
-        </div>
-
-        <div class="work-stage">
-          <div class="work-panel active">
-            <span class="wp-shot" style="background-image:url('selected_work_images/atlantic-containers.jpg');"></span>
-            <span class="wp-meta">
-              <span class="wp-badge">Paid · CRO · Analytics</span>
-              <span class="wp-title">Atlantic Containers</span>
-              <span class="wp-desc">Since 2022, our strategic growth partner for scaling ad spend across Google, Meta
-                and LinkedIn.</span>
-              <a href="#contact" class="arrow-link wp-link">View case study</a>
-            </span>
-          </div>
-          <div class="work-panel">
-            <span class="wp-shot" style="background-image:url('selected_work_images/mancru.jpg');"></span>
-            <span class="wp-meta">
-              <span class="wp-badge">Performance</span>
-              <span class="wp-title">Mancru</span>
-              <span class="wp-desc">Precision and profitability in digital advertising funnel optimization.</span>
-              <a href="#contact" class="arrow-link wp-link">View case study</a>
-            </span>
-          </div>
-          <div class="work-panel">
-            <span class="wp-shot is-logo" style="background-image:url('selected_work_images/galeria6280.png');"></span>
-            <span class="wp-meta">
-              <span class="wp-badge">Social · Content</span>
-              <span class="wp-title">Galería 6280</span>
-              <span class="wp-desc">Community building and an organic social voice paired with paid traffic.</span>
-              <a href="#contact" class="arrow-link wp-link">View case study</a>
-            </span>
-          </div>
-          <div class="work-panel">
-            <span class="wp-shot" style="background-image:url('clients/smash-2.jpg');"></span>
-            <span class="wp-meta">
-              <span class="wp-badge">Brand · Web</span>
-              <span class="wp-title">Smash Padel Club</span>
-              <span class="wp-desc">A magnetic visual identity and booking platform built from the ground up.</span>
-              <a href="#contact" class="arrow-link wp-link">View case study</a>
-            </span>
-          </div>
-          <div class="work-panel">
-            <span class="wp-shot" style="background-image:url('selected_work_images/entrenate.jpg');"></span>
-            <span class="wp-meta">
-              <span class="wp-badge">Social · Paid</span>
-              <span class="wp-title">Entrenate</span>
-              <span class="wp-desc">A full-funnel digital strategy combining social media and paid advertising.</span>
-              <a href="#contact" class="arrow-link wp-link">View case study</a>
-            </span>
-          </div>
-          <div class="work-panel">
-            <span class="wp-shot is-logo" style="background-image:url('selected_work_images/amelie.png');"></span>
-            <span class="wp-meta">
-              <span class="wp-badge">Brand · Web</span>
-              <span class="wp-title">Amelie</span>
-              <span class="wp-desc">Complete visual identity, web development and a client-acquisition strategy.</span>
-              <a href="#contact" class="arrow-link wp-link">View case study</a>
-            </span>
-          </div>
-        </div>
+      <div class="work-grid reveal" data-delay="2">
+        <a href="featured-cases.html" class="wcard">
+          <span class="shot"><img src="selected_work_images/atlantic-containers.jpg" alt="Atlantic Containers" /></span>
+          <span class="wc-meta">
+            <span class="wc-title">Atlantic Containers</span>
+            <span class="wc-tag">Paid · CRO · Analytics</span>
+          </span>
+        </a>
+        <a href="featured-cases.html" class="wcard">
+          <span class="shot"><img src="selected_work_images/mancru.jpg" alt="Mancru" /></span>
+          <span class="wc-meta">
+            <span class="wc-title">Mancru</span>
+            <span class="wc-tag">Performance</span>
+          </span>
+        </a>
+        <a href="featured-cases.html" class="wcard">
+          <span class="shot"><img src="clients/galeria-1.jpg" alt="Galería 6280" /></span>
+          <span class="wc-meta">
+            <span class="wc-title">Galería 6280</span>
+            <span class="wc-tag">Social · Content</span>
+          </span>
+        </a>
+        <a href="featured-cases.html" class="wcard">
+          <span class="shot"><img src="clients/smash-1.jpg" alt="Smash Padel Club" /></span>
+          <span class="wc-meta">
+            <span class="wc-title">Smash Padel Club</span>
+            <span class="wc-tag">Brand · Web</span>
+          </span>
+        </a>
+        <a href="featured-cases.html" class="wcard">
+          <span class="shot"><img src="clients/entrenate-1.jpg" alt="Entrenate" /></span>
+          <span class="wc-meta">
+            <span class="wc-title">Entrenate</span>
+            <span class="wc-tag">Social · Paid</span>
+          </span>
+        </a>
+        <a href="featured-cases.html" class="wcard">
+          <span class="shot"><img src="clients/amelie-1.jpg" alt="Amelie" /></span>
+          <span class="wc-meta">
+            <span class="wc-title">Amelie</span>
+            <span class="wc-tag">Brand · Web</span>
+          </span>
+        </a>
       </div>
     </div>
   </section>
@@ -1963,20 +1851,6 @@
     const mnav = document.getElementById('mobile-nav');
     toggle.addEventListener('click', () => mnav.classList.toggle('open'));
     mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mnav.classList.remove('open')));
-
-    // Work tabs
-    const tabs = document.querySelectorAll('.work-tab');
-    const panels = document.querySelectorAll('.work-panel');
-    tabs.forEach((tab, i) => {
-      const activate = () => {
-        tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-        panels.forEach(p => p.classList.remove('active'));
-        tab.classList.add('active'); tab.setAttribute('aria-selected', 'true');
-        panels[i].classList.add('active');
-      };
-      tab.addEventListener('click', activate);
-      tab.addEventListener('mouseenter', activate);
-    });
 
     // Reveal on scroll
     const io = new IntersectionObserver((entries) => {
