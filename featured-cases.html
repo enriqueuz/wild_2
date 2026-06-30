@@ -19,8 +19,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet" />
 
   <style>
@@ -125,17 +124,6 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--ink-2);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      background: var(--blue);
-      border-radius: 50%;
     }
 
     .reg {
@@ -353,7 +341,7 @@
     }
 
     .section {
-      padding: clamp(72px, 9vw, 150px) 0;
+      padding: clamp(48px, 6vw, 96px) 0;
     }
 
     .section.alt {
@@ -935,6 +923,7 @@
       padding: 160px 0 60px;
       border-bottom: 1px solid var(--line);
     }
+
     .fc-hero h1 {
       margin: 0;
       font-family: var(--display);
@@ -944,34 +933,70 @@
       line-height: 1.05;
       letter-spacing: -0.03em;
     }
-    .fc-hero h1 .blue { color: var(--blue); }
+
+    .fc-hero h1 .blue {
+      color: var(--blue);
+    }
+
     .fc-hero h1 .lime-mark {
       background: var(--lime);
       padding: 0 0.12em;
       box-decoration-break: clone;
       -webkit-box-decoration-break: clone;
     }
-    .fc-hero .lead { margin-top: 28px; }
 
-    .fc-list .section { border-bottom: 1px solid var(--line); }
+    .fc-hero .lead {
+      margin-top: 28px;
+    }
+
+    .fc-list .section {
+      border-bottom: 1px solid var(--line);
+    }
 
     /* Alternate media side */
-    .feature-card.reverse .feature-media { order: 2; }
+    .feature-card.reverse .feature-media {
+      order: 2;
+    }
 
     /* Dark variant */
-    .feature-card.v-ink { background: var(--ink); }
+    .feature-card.v-ink {
+      background: var(--ink);
+    }
 
     /* Lime variant */
-    .feature-card.v-lime { background: var(--lime); color: var(--ink); }
-    .feature-card.v-lime .feature-kicker { color: var(--blue-ink); }
-    .feature-card.v-lime p { color: rgba(10, 10, 10, 0.8); }
-    .feature-card.v-lime .feature-metrics .m .v { color: var(--blue); }
-    .feature-card.v-lime .feature-metrics .m .k { color: rgba(10, 10, 10, 0.6); }
-    .feature-card.v-lime .arrow-link { color: var(--ink); }
-    .feature-card.v-lime .arrow-link:hover { color: var(--blue); }
+    .feature-card.v-lime {
+      background: var(--lime);
+      color: var(--ink);
+    }
+
+    .feature-card.v-lime .feature-kicker {
+      color: var(--blue-ink);
+    }
+
+    .feature-card.v-lime p {
+      color: rgba(10, 10, 10, 0.8);
+    }
+
+    .feature-card.v-lime .feature-metrics .m .v {
+      color: var(--blue);
+    }
+
+    .feature-card.v-lime .feature-metrics .m .k {
+      color: rgba(10, 10, 10, 0.6);
+    }
+
+    .feature-card.v-lime .arrow-link {
+      color: var(--ink);
+    }
+
+    .feature-card.v-lime .arrow-link:hover {
+      color: var(--blue);
+    }
 
     @media (max-width: 920px) {
-      .feature-card.reverse .feature-media { order: 0; }
+      .feature-card.reverse .feature-media {
+        order: 0;
+      }
     }
 
     /* ============ FINAL CTA ============ */
@@ -979,7 +1004,7 @@
       background: var(--ink);
       color: #fff;
       text-align: center;
-      padding: clamp(80px, 12vw, 180px) 0;
+      padding: clamp(56px, 8vw, 110px) 0;
     }
 
     .cta h2 {
@@ -1312,7 +1337,7 @@
     <section class="section">
       <div class="wrap">
         <div class="feature-card v-ink reveal">
-          <div class="feature-media"><img src="selected_work_images/atlantic-containers.jpg"
+          <div class="feature-media"><img src="selected_work_images/atlantic-containters-2.jpeg"
               alt="Atlantic Containers" /></div>
           <div class="feature-body">
             <span class="feature-kicker">Paid Media · CRO · Analytics · Since 2022</span>
@@ -1359,7 +1384,7 @@
     <section class="section">
       <div class="wrap">
         <div class="feature-card v-lime reveal">
-          <div class="feature-media"><img src="clients/entrenate-1.jpg" alt="Entrenate" /></div>
+          <div class="feature-media"><img src="selected_work_images/entrenate.jpeg" alt="Entrenate" /></div>
           <div class="feature-body">
             <span class="feature-kicker">Social · Paid Media · Acquisition</span>
             <h2>Entrenate</h2>
