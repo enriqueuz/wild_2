@@ -1163,6 +1163,25 @@
       color: var(--blue);
     }
 
+    .ci-col a.v.ext {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ci-col a.v.ext .exti {
+      width: 0.62em;
+      height: 0.62em;
+      color: var(--ink-3);
+      flex: none;
+      transition: color .25s, transform .25s;
+    }
+
+    .ci-col a.v.ext:hover .exti {
+      color: var(--blue);
+      transform: translate(1px, -1px);
+    }
+
     .ci-col .vsub {
       display: block;
       font-size: 12px;
@@ -1302,6 +1321,25 @@
 
     .footer ul a:hover {
       color: var(--lime);
+    }
+
+    .footer ul a.ext {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer ul a.ext .exti {
+      width: 0.62em;
+      height: 0.62em;
+      flex: none;
+      opacity: 0.55;
+      transition: opacity .25s, transform .25s;
+    }
+
+    .footer ul a.ext:hover .exti {
+      opacity: 1;
+      transform: translate(1px, -1px);
     }
 
     .footer-bottom {
@@ -1532,11 +1570,6 @@
             </div>
           </div>
 
-          <div class="cf-field">
-            <label for="cf-budget">Estimated budget (USD / month)</label>
-            <input type="text" id="cf-budget" name="budget" placeholder="e.g. 3,000 – 5,000" />
-          </div>
-
           <div class="cf-field full">
             <label for="cf-message">Tell us about your project <span class="req">*</span></label>
             <textarea id="cf-message" name="message"
@@ -1566,13 +1599,23 @@
         </div>
         <div class="ci-col">
           <span class="k">Studio</span>
-          <span class="v">Buenos Aires, Argentina</span>
-          <span class="vsub">GMT−3 (ART) · Mon — Fri · 9 to 19<br />Reply within 1 business day</span>
+          <span class="v">Indiana, USA &amp; Uruguay</span>
+          <span class="vsub">GMT−5 (ET) · GMT−3 (UYT) <br> Mon — Fri · 9 to 19<br />Reply within 1 business day</span>
         </div>
         <div class="ci-col">
           <span class="k">Follow</span>
-          <a class="v" href="https://www.instagram.com/teamwildgrowth/" target="_blank" rel="noopener">Instagram ↗</a>
-          <a class="v" href="https://www.linkedin.com/company/wildgrowth/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="v ext" href="https://www.instagram.com/teamwildgrowth/" target="_blank" rel="noopener">Instagram<svg
+              class="exti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17 17 7" />
+              <path d="M8 7h9v9" />
+            </svg></a>
+          <a class="v ext" href="https://www.linkedin.com/company/wildgrowth/" target="_blank"
+            rel="noopener">LinkedIn<svg class="exti" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17 17 7" />
+              <path d="M8 7h9v9" />
+            </svg></a>
         </div>
       </div>
     </div>
@@ -1599,10 +1642,24 @@
         <div>
           <h5>Social</h5>
           <ul>
-            <li><a href="https://www.instagram.com/teamwildgrowth/" target="_blank" rel="noopener">Instagram ↗</a></li>
-            <li><a href="https://www.linkedin.com/company/wildgrowth/" target="_blank" rel="noopener">LinkedIn ↗</a>
-            </li>
-            <li><a href="https://wa.me/59892655745" target="_blank" rel="noopener">WhatsApp ↗</a></li>
+            <li><a class="ext" href="https://www.instagram.com/teamwildgrowth/" target="_blank"
+                rel="noopener">Instagram<svg class="exti" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M7 17 17 7" />
+                  <path d="M8 7h9v9" />
+                </svg></a></li>
+            <li><a class="ext" href="https://www.linkedin.com/company/wildgrowth/" target="_blank"
+                rel="noopener">LinkedIn<svg class="exti" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M7 17 17 7" />
+                  <path d="M8 7h9v9" />
+                </svg></a></li>
+            <li><a class="ext" href="https://wa.me/59892655745" target="_blank" rel="noopener">WhatsApp<svg class="exti"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
+                  <path d="M7 17 17 7" />
+                  <path d="M8 7h9v9" />
+                </svg></a></li>
           </ul>
         </div>
       </div>
@@ -1641,7 +1698,6 @@
           `Email: ${val('email')}`,
           `Phone: ${val('phone') || '—'}`,
           `Needs: ${needs.length ? needs.join(', ') : '—'}`,
-          `Budget (USD/mo): ${val('budget') || '—'}`,
           '',
           'Project:',
           val('message')

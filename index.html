@@ -1309,6 +1309,25 @@
       color: var(--lime);
     }
 
+    .footer ul a.ext {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer ul a.ext .exti {
+      width: 0.62em;
+      height: 0.62em;
+      flex: none;
+      opacity: 0.55;
+      transition: opacity .25s, transform .25s;
+    }
+
+    .footer ul a.ext:hover .exti {
+      opacity: 1;
+      transform: translate(1px, -1px);
+    }
+
     .footer-bottom {
       display: flex;
       justify-content: space-between;
@@ -1841,10 +1860,10 @@
         <div>
           <h5>Social</h5>
           <ul>
-            <li><a href="https://www.instagram.com/teamwildgrowth/" target="_blank" rel="noopener">Instagram ↗</a></li>
-            <li><a href="https://www.linkedin.com/company/wildgrowth/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <li><a class="ext" href="https://www.instagram.com/teamwildgrowth/" target="_blank" rel="noopener">Instagram<svg class="exti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></li>
+            <li><a class="ext" href="https://www.linkedin.com/company/wildgrowth/" target="_blank" rel="noopener">LinkedIn<svg class="exti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
             </li>
-            <li><a href="https://wa.me/59892655745" target="_blank" rel="noopener">WhatsApp ↗</a></li>
+            <li><a class="ext" href="https://wa.me/59892655745" target="_blank" rel="noopener">WhatsApp<svg class="exti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></li>
           </ul>
         </div>
       </div>
