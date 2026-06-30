@@ -1047,7 +1047,16 @@
       border-bottom: 1px solid var(--line);
     }
 
-
+    .clients-eyebrow {
+      margin: 0 0 30px;
+      text-align: center;
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+    }
 
     .marquee {
       overflow: hidden;
@@ -1078,79 +1087,23 @@
       }
     }
 
+    /* Real <img> logos — work under file:// and https alike.
+       Source PNGs are white-on-transparent (from the old dark site), so
+       brightness(0) turns each into a solid black silhouette via its alpha. */
     .client-logo {
       flex: 0 0 auto;
-      width: 168px;
-      height: 64px;
-      margin: 0 clamp(20px, 2.6vw, 46px);
-      background: var(--ink);
-      opacity: 0.55;
-      -webkit-mask: var(--logo) no-repeat center;
-      mask: var(--logo) no-repeat center;
-      -webkit-mask-size: contain;
-      mask-size: contain;
-      transition: opacity .25s, background .25s, transform .25s;
+      height: 38px;
+      width: auto;
+      margin: 0 clamp(24px, 3vw, 56px);
+      object-fit: contain;
+      filter: brightness(0);
+      opacity: 0.5;
+      transition: opacity .25s, transform .25s;
     }
 
     .client-logo:hover {
       opacity: 1;
-      background: var(--blue);
       transform: translateY(-2px);
-    }
-
-    .l-atlantic {
-      -webkit-mask-size: 111.4% 278.6%;
-      mask-size: 111.4% 278.6%;
-    }
-
-    .l-mancru {
-      -webkit-mask-size: 128.8% 321.9%;
-      mask-size: 128.8% 321.9%;
-    }
-
-    .l-galeria {
-      -webkit-mask-size: 44.6% 111.4%;
-      mask-size: 44.6% 111.4%;
-    }
-
-    .l-smartlock {
-      -webkit-mask-size: 65.0% 162.5%;
-      mask-size: 65.0% 162.5%;
-    }
-
-    .l-entrenate {
-      -webkit-mask-size: 67.8% 169.6%;
-      mask-size: 67.8% 169.6%;
-    }
-
-    .l-amelie {
-      -webkit-mask-size: 130.6% 326.4%;
-      mask-size: 130.6% 326.4%;
-    }
-
-    .l-umari {
-      -webkit-mask-size: 138.2% 345.6%;
-      mask-size: 138.2% 345.6%;
-    }
-
-    .l-kosto {
-      -webkit-mask-size: 103.3% 74.4%;
-      mask-size: 103.3% 74.4%;
-    }
-
-    .l-carolinas {
-      -webkit-mask-size: 81.8% 123.8%;
-      mask-size: 81.8% 123.8%;
-    }
-
-    .l-smash {
-      -webkit-mask-size: 76.8% 116.4%;
-      mask-size: 76.8% 116.4%;
-    }
-
-    .l-cussehub {
-      -webkit-mask-size: 59.9% 90.7%;
-      mask-size: 59.9% 90.7%;
     }
 
     /* ============ TEAM ============ */
@@ -1820,52 +1773,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ============ CLIENTS MARQUEE ============ -->
-  <div class="clients">
-    <div class="marquee">
-      <div class="marquee-track">
-        <span class="client-logo l-atlantic" style="--logo:url('logos/atlantic.png');" aria-label="Atlantic Containers"
-          role="img"></span>
-        <span class="client-logo l-mancru" style="--logo:url('logos/mancru.png');" aria-label="Mancru"
-          role="img"></span>
-        <span class="client-logo l-galeria" style="--logo:url('logos/galeria6280.png');" aria-label="Galería 6280"
-          role="img"></span>
-        <span class="client-logo l-smartlock" style="--logo:url('logos/smartlock.png');"
-          aria-label="Smart Lock Solutions" role="img"></span>
-        <span class="client-logo l-entrenate" style="--logo:url('logos/entrenate.png');" aria-label="Entrenate"
-          role="img"></span>
-        <span class="client-logo l-amelie" style="--logo:url('logos/amelie.png');" aria-label="Amelie"
-          role="img"></span>
-        <span class="client-logo l-umari" style="--logo:url('logos/umari.png');" aria-label="Umarí" role="img"></span>
-        <span class="client-logo l-kosto" style="--logo:url('logos/kosto.png');" aria-label="Kosto" role="img"></span>
-        <span class="client-logo l-carolinas" style="--logo:url('logos/carolinashome.png');"
-          aria-label="Carolina's Home" role="img"></span>
-        <span class="client-logo l-smash" style="--logo:url('logos/smash.png');" aria-label="Smash Padel Club"
-          role="img"></span>
-        <span class="client-logo l-cussehub" style="--logo:url('logos/cussehub.png');" aria-label="The Cusse Hub"
-          role="img"></span>
-        <!-- duplicate set for seamless loop -->
-        <span class="client-logo l-atlantic" style="--logo:url('logos/atlantic.png');" role="img"
-          aria-hidden="true"></span>
-        <span class="client-logo l-mancru" style="--logo:url('logos/mancru.png');" role="img" aria-hidden="true"></span>
-        <span class="client-logo l-galeria" style="--logo:url('logos/galeria6280.png');" role="img"
-          aria-hidden="true"></span>
-        <span class="client-logo l-smartlock" style="--logo:url('logos/smartlock.png');" role="img"
-          aria-hidden="true"></span>
-        <span class="client-logo l-entrenate" style="--logo:url('logos/entrenate.png');" role="img"
-          aria-hidden="true"></span>
-        <span class="client-logo l-amelie" style="--logo:url('logos/amelie.png');" role="img" aria-hidden="true"></span>
-        <span class="client-logo l-umari" style="--logo:url('logos/umari.png');" role="img" aria-hidden="true"></span>
-        <span class="client-logo l-kosto" style="--logo:url('logos/kosto.png');" role="img" aria-hidden="true"></span>
-        <span class="client-logo l-carolinas" style="--logo:url('logos/carolinashome.png');" role="img"
-          aria-hidden="true"></span>
-        <span class="client-logo l-smash" style="--logo:url('logos/smash.png');" role="img" aria-hidden="true"></span>
-        <span class="client-logo l-cussehub" style="--logo:url('logos/cussehub.png');" role="img"
-          aria-hidden="true"></span>
-      </div>
-    </div>
-  </div>
 
   <!-- ============ TEAM ============ -->
   <section class="section alt" id="team">
