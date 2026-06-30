@@ -720,32 +720,55 @@
 
     @media (max-width: 620px) {
       .svc-row {
-        grid-template-columns: 34px 1fr 30px;
-        gap: 14px;
+        grid-template-columns: 34px 1fr 24px;
+        gap: 16px;
+        align-items: start;
+        padding: 22px 4px;
       }
 
       .svc-thumb {
         display: none;
       }
 
+      .svc-num {
+        color: var(--ink);
+        margin-top: 2px;
+      }
+
+      /* No hover on touch — show title + description stacked, always visible */
       .svc-text {
         height: auto;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
         font-size: clamp(18px, 5vw, 24px);
       }
 
       .svc-text .label,
       .svc-text .desc {
+        position: static;
+        transform: none;
         white-space: normal;
+        transition: none;
+      }
+
+      .svc-text .label {
+        color: var(--ink);
       }
 
       .svc-text .desc {
-        position: static;
-        transform: none;
-        display: none;
+        color: var(--blue);
+        font-size: 0.62em;
+        line-height: 1.25;
+        text-transform: none;
       }
 
-      .svc-row:hover .svc-text .label {
+      .svc-arrow {
+        opacity: 1;
         transform: none;
+        color: var(--ink);
+        margin-top: 2px;
       }
     }
 
