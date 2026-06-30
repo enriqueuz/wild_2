@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Featured Cases — Wild Growth®</title>
+  <title>Contact — Wild Growth®</title>
   <meta name="description"
-    content="Creative is our language. Performance is our mindset. We create and develop digital experiences focused on performance and growth — home to the most ambitious brands." />
+    content="Let's turn ideas into impact. Strategic marketing for brands that want to grow — tell us about your project and we'll reply within one business day." />
 
   <!-- OpenGraph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Featured Cases — Wild Growth®" />
+  <meta property="og:title" content="Contact — Wild Growth®" />
   <meta property="og:description"
     content="Creative is our language. Performance is our mindset. Digital experiences focused on performance and growth." />
   <meta property="og:url" content="https://teamwildgrowth.com/" />
@@ -1119,7 +1119,7 @@
       border-radius: 999px;
     }
 
-    /* ============ FEATURED CASES PAGE ============ */
+    /* ============ CONTACT PAGE HERO ============ */
     .fc-hero {
       padding: 160px 0 60px;
       border-bottom: 1px solid var(--line);
@@ -1133,34 +1133,168 @@
       line-height: 1.05;
       letter-spacing: -0.03em;
     }
-    .fc-hero h1 .blue { color: var(--blue); }
     .fc-hero h1 .lime-mark {
       background: var(--lime);
       padding: 0 0.12em;
       box-decoration-break: clone;
       -webkit-box-decoration-break: clone;
     }
-    .fc-hero .lead { margin-top: 28px; }
+    .fc-hero .lead { margin-top: 28px; max-width: 56ch; }
 
-    .fc-list .section { border-bottom: 1px solid var(--line); }
+    /* ============ CONTACT PAGE ============ */
+    .contact-sec { padding-top: clamp(48px, 6vw, 80px); }
+    .contact-wrap { max-width: 820px; margin: 0 auto; }
 
-    /* Alternate media side */
-    .feature-card.reverse .feature-media { order: 2; }
+    .contact-form {
+      background: var(--bg-2);
+      border-radius: var(--radius-lg);
+      padding: clamp(28px, 4vw, 56px);
+    }
+    .cf-head { margin-bottom: 36px; }
+    .cf-head h3 {
+      margin: 0 0 12px;
+      font-family: var(--display);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 0.98;
+    }
+    .cf-head p { margin: 0; font-size: clamp(15px, 1.3vw, 18px); line-height: 1.55; color: var(--ink-2); max-width: 52ch; }
 
-    /* Dark variant */
-    .feature-card.v-ink { background: var(--ink); }
+    .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .cf-field { display: flex; flex-direction: column; margin-bottom: 26px; }
+    .cf-field.full { grid-column: 1 / -1; }
+    .cf-field label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-2);
+      margin-bottom: 9px;
+    }
+    .cf-field label .req { color: var(--blue); }
+    .cf-field input,
+    .cf-field textarea {
+      font-family: var(--body);
+      font-size: 16px;
+      color: var(--ink);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 16px;
+      transition: border-color .25s, box-shadow .25s;
+    }
+    .cf-field textarea { resize: vertical; min-height: 130px; }
+    .cf-field input::placeholder,
+    .cf-field textarea::placeholder { color: var(--ink-3); }
+    .cf-field input:focus,
+    .cf-field textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(68, 38, 255, 0.12);
+    }
 
-    /* Lime variant */
-    .feature-card.v-lime { background: var(--lime); color: var(--ink); }
-    .feature-card.v-lime .feature-kicker { color: var(--blue-ink); }
-    .feature-card.v-lime p { color: rgba(10, 10, 10, 0.8); }
-    .feature-card.v-lime .feature-metrics .m .v { color: var(--blue); }
-    .feature-card.v-lime .feature-metrics .m .k { color: rgba(10, 10, 10, 0.6); }
-    .feature-card.v-lime .arrow-link { color: var(--ink); }
-    .feature-card.v-lime .arrow-link:hover { color: var(--blue); }
+    .cf-needs { margin-bottom: 26px; }
+    .cf-needs > span.lbl {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-2);
+      margin-bottom: 14px;
+    }
+    /* symmetric option grid */
+    .cf-chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .cf-chip {
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+    }
+    .cf-chip input { position: absolute; opacity: 0; pointer-events: none; }
+    .cf-chip span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100%;
+      font-size: 14px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--ink-2);
+      transition: all .2s;
+    }
+    .cf-chip:hover span { border-color: var(--ink); color: var(--ink); }
+    .cf-chip input:checked + span {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #fff;
+    }
+    .cf-chip input:focus-visible + span {
+      box-shadow: 0 0 0 3px rgba(68, 38, 255, 0.2);
+    }
 
-    @media (max-width: 920px) {
-      .feature-card.reverse .feature-media { order: 0; }
+    .contact-form .btn { width: 100%; justify-content: center; margin-top: 8px; }
+    .cf-note {
+      margin: 16px 0 0;
+      font-size: 13px;
+      color: var(--ink-3);
+      text-align: center;
+    }
+
+    /* ---- Contact details strip (below form) ---- */
+    .contact-info {
+      max-width: 820px;
+      margin: clamp(48px, 6vw, 80px) auto 0;
+      padding-top: clamp(36px, 4vw, 52px);
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1.2fr 0.9fr;
+      gap: 30px;
+    }
+    .ci-col .k {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-3);
+      margin-bottom: 14px;
+    }
+    .ci-col .v {
+      display: block;
+      font-size: 15px;
+      line-height: 1.4;
+      color: var(--ink);
+      text-decoration: none;
+      transition: color .25s;
+      white-space: nowrap;
+    }
+    .ci-col a.v { width: fit-content; }
+    .ci-col a.v + .v,
+    .ci-col .v + .vsub { margin-top: 4px; }
+    .ci-col .vsub + .v { margin-top: 16px; }
+    .ci-col a.v:hover { color: var(--blue); }
+    .ci-col .vsub {
+      display: block;
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--ink-3);
+      margin-top: 10px;
+      white-space: normal;
+    }
+    .ci-col.email .v { white-space: normal; word-break: break-word; }
+
+    @media (max-width: 760px) {
+      .contact-info { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .cf-row { grid-template-columns: 1fr; }
+      .cf-chips { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 460px) {
+      .contact-info { grid-template-columns: 1fr; gap: 26px; }
+      .cf-chips { grid-template-columns: 1fr; }
     }
 
     /* ============ FINAL CTA ============ */
@@ -1458,10 +1592,10 @@
         <a href="index.html#work">Work</a>
         <a href="featured-cases.html">Cases</a>
         <a href="index.html#team">Team</a>
-        <a href="contact.html">Contact</a>
+        <a href="#contact">Contact</a>
       </nav>
       <div class="header-actions">
-        <a href="contact.html" class="header-cta">Say Hello</a>
+        <a href="#contact" class="header-cta">Say Hello</a>
       </div>
       <button class="menu-toggle" aria-label="Open menu" id="menu-toggle">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
@@ -1474,180 +1608,103 @@
       <a href="index.html#work">Work</a>
       <a href="featured-cases.html">Cases</a>
       <a href="index.html#team">Team</a>
-      <a href="contact.html">Contact</a>
+      <a href="#contact">Contact</a>
     </div>
   </header>
 
   <!-- ============ PAGE HERO ============ -->
   <section class="fc-hero">
     <div class="wrap">
-      <div class="section-label reveal">Featured cases</div>
-      <h1 class="reveal" data-delay="1">Work that <span class="blue">drives</span><br /><span
-          class="lime-mark">growth.</span></h1>
+      <div class="section-label reveal">Contact</div>
+      <h1 class="reveal" data-delay="1">Let's turn ideas<br />into <span
+          class="lime-mark">impact.</span></h1>
       <p class="lead reveal" data-delay="2">
-        A closer look at the brands we partner with — strategy, creative and performance
-        turned into measurable outcomes.
+        Strategic marketing for brands that want to grow. Tell us where your brand is today —
+        we reply within one business day.
       </p>
     </div>
   </section>
 
-  <!-- ============ FEATURED CASES ============ -->
-  <div class="fc-list">
-
-    <!-- 01 · Smash Padel Club -->
-    <section class="section">
-      <div class="wrap">
-        <div class="feature-card reveal">
-          <div class="feature-media"><img src="clients/smash-1.jpg" alt="Smash Padel Club" /></div>
-          <div class="feature-body">
-            <span class="feature-kicker">Brand · Web · Paid Media · Atlanta, USA</span>
-            <h2>Smash Padel Club</h2>
-            <p>
-              A magnetic visual identity, a high-performance booking platform and a full Paid Media
-              growth engine — built from the ground up for Atlanta's fastest-growing padel club.
-            </p>
-            <div class="feature-metrics">
-              <div class="m"><span class="v">+310%</span><span class="k">monthly bookings</span></div>
-              <div class="m"><span class="v">95%</span><span class="k">court occupancy</span></div>
-              <div class="m"><span class="v">5.4×</span><span class="k">paid ROAS</span></div>
-            </div>
-            <a href="contact.html" class="arrow-link">Start a project</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 02 · Atlantic Containers -->
-    <section class="section">
-      <div class="wrap">
-        <div class="feature-card reverse v-ink reveal">
-          <div class="feature-media"><img src="selected_work_images/atlantic-containers.jpg"
-              alt="Atlantic Containers" /></div>
-          <div class="feature-body">
-            <span class="feature-kicker">Paid Media · CRO · Analytics · Since 2022</span>
-            <h2>Atlantic Containers</h2>
-            <p>
-              A coordinated omnichannel ad ecosystem across Google, Meta and LinkedIn — capturing
-              B2B and B2C demand and scaling ad spend profitably for over four years.
-            </p>
-            <div class="feature-metrics">
-              <div class="m"><span class="v">3.2×</span><span class="k">qualified leads</span></div>
-              <div class="m"><span class="v">−42%</span><span class="k">cost per lead</span></div>
-              <div class="m"><span class="v">+180%</span><span class="k">organic traffic</span></div>
-            </div>
-            <a href="contact.html" class="arrow-link">Start a project</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 · Mancru -->
-    <section class="section">
-      <div class="wrap">
-        <div class="feature-card v-lime reveal">
-          <div class="feature-media"><img src="selected_work_images/mancru.jpg" alt="Mancru" /></div>
-          <div class="feature-body">
-            <span class="feature-kicker">Paid Media · Acquisition · Montevideo, UY</span>
-            <h2>Mancru</h2>
-            <p>
-              A dual advertising ecosystem — Google Ads to intercept high-intent buyers and Meta Ads
-              to keep the brand top of mind — tuned daily for a healthy return on ad spend.
-            </p>
-            <div class="feature-metrics">
-              <div class="m"><span class="v">4.8×</span><span class="k">ROAS</span></div>
-              <div class="m"><span class="v">+220%</span><span class="k">monthly sales</span></div>
-              <div class="m"><span class="v">−35%</span><span class="k">CPA</span></div>
-            </div>
-            <a href="contact.html" class="arrow-link">Start a project</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 04 · Galería 6280 -->
-    <section class="section">
-      <div class="wrap">
-        <div class="feature-card reverse reveal">
-          <div class="feature-media"><img src="clients/galeria-1.jpg" alt="Galería 6280" /></div>
-          <div class="feature-body">
-            <span class="feature-kicker">Social · Content · Paid Media</span>
-            <h2>Galería 6280</h2>
-            <p>
-              An organic voice that educates, inspires and builds community — amplified by precise
-              paid campaigns that balance brand positioning with commercial results.
-            </p>
-            <div class="feature-metrics">
-              <div class="m"><span class="v">+95%</span><span class="k">visitor growth</span></div>
-              <div class="m"><span class="v">12k</span><span class="k">new IG followers</span></div>
-              <div class="m"><span class="v">+260%</span><span class="k">engagement</span></div>
-            </div>
-            <a href="contact.html" class="arrow-link">Start a project</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 05 · Entrenate -->
-    <section class="section">
-      <div class="wrap">
-        <div class="feature-card v-ink reveal">
-          <div class="feature-media"><img src="clients/entrenate-1.jpg" alt="Entrenate" /></div>
-          <div class="feature-body">
-            <span class="feature-kicker">Social · Paid Media · Acquisition</span>
-            <h2>Entrenate</h2>
-            <p>
-              A full-funnel strategy combining a dynamic content calendar with Facebook and Google Ads —
-              turning inspiration into registrations and a fast-growing member base.
-            </p>
-            <div class="feature-metrics">
-              <div class="m"><span class="v">+340%</span><span class="k">engagement</span></div>
-              <div class="m"><span class="v">3.5k</span><span class="k">members acquired</span></div>
-              <div class="m"><span class="v">−40%</span><span class="k">cost per lead</span></div>
-            </div>
-            <a href="contact.html" class="arrow-link">Start a project</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 06 · Amelie -->
-    <section class="section">
-      <div class="wrap">
-        <div class="feature-card reverse v-lime reveal">
-          <div class="feature-media"><img src="clients/amelie-1.jpg" alt="Amelie" /></div>
-          <div class="feature-body">
-            <span class="feature-kicker">Brand · Web · Paid Media · Maintenance</span>
-            <h2>Amelie</h2>
-            <p>
-              A 360° digital ecosystem — from corporate identity and a conversion-focused website to
-              an always-on Paid Media strategy and ongoing technical support.
-            </p>
-            <div class="feature-metrics">
-              <div class="m"><span class="v">+210%</span><span class="k">sales</span></div>
-              <div class="m"><span class="v">5.2×</span><span class="k">ROAS</span></div>
-              <div class="m"><span class="v">99.9%</span><span class="k">site uptime</span></div>
-            </div>
-            <a href="contact.html" class="arrow-link">Start a project</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </div>
-
-  <!-- ============ FINAL CTA ============ -->
-  <section class="cta" id="contact">
+  <!-- ============ CONTACT ============ -->
+  <section class="section contact-sec" id="contact">
     <div class="wrap">
-      <span class="eyebrow reveal"
-        style="color:rgba(255,255,255,.7); justify-content:center; display:inline-flex; margin-bottom:28px;">[ next step
-        ]</span>
-      <h2 class="reveal" data-delay="1">Let's turn ideas into <span class="lime">impact.</span></h2>
-      <p class="reveal" data-delay="2">
-        Tell us where your brand is today and let's design what comes next —
-        with strategy, content and performance.
-      </p>
-      <div class="actions reveal" data-delay="3">
-        <a href="contact.html" class="btn btn-lime">Start a project <span class="ar">→</span></a>
+      <div class="contact-wrap">
+        <form class="contact-form reveal" id="contact-form">
+          <div class="cf-head">
+            <h3>Tell us about your project</h3>
+            <p>Four quick fields and a few details — the more we know, the sharper our first reply.</p>
+          </div>
+          <div class="cf-row">
+            <div class="cf-field">
+              <label for="cf-name">Full name <span class="req">*</span></label>
+              <input type="text" id="cf-name" name="name" placeholder="Jane Doe" required />
+            </div>
+            <div class="cf-field">
+              <label for="cf-company">Company</label>
+              <input type="text" id="cf-company" name="company" placeholder="Your brand" />
+            </div>
+            <div class="cf-field">
+              <label for="cf-email">Email <span class="req">*</span></label>
+              <input type="email" id="cf-email" name="email" placeholder="you@email.com" required />
+            </div>
+            <div class="cf-field">
+              <label for="cf-phone">Phone</label>
+              <input type="tel" id="cf-phone" name="phone" placeholder="+1 555 000 0000" />
+            </div>
+          </div>
+
+          <div class="cf-needs">
+            <span class="lbl">What do you need?</span>
+            <div class="cf-chips">
+              <label class="cf-chip"><input type="checkbox" name="needs" value="Growth Strategy" /><span>Growth Strategy</span></label>
+              <label class="cf-chip"><input type="checkbox" name="needs" value="Paid Media" /><span>Paid Media</span></label>
+              <label class="cf-chip"><input type="checkbox" name="needs" value="Creative & Branding" /><span>Creative &amp; Branding</span></label>
+              <label class="cf-chip"><input type="checkbox" name="needs" value="Web & CRO" /><span>Web &amp; CRO</span></label>
+              <label class="cf-chip"><input type="checkbox" name="needs" value="Analytics & BI" /><span>Analytics &amp; BI</span></label>
+              <label class="cf-chip"><input type="checkbox" name="needs" value="Marketing Automation" /><span>Marketing Automation</span></label>
+            </div>
+          </div>
+
+          <div class="cf-field">
+            <label for="cf-budget">Estimated budget (USD / month)</label>
+            <input type="text" id="cf-budget" name="budget" placeholder="e.g. 3,000 – 5,000" />
+          </div>
+
+          <div class="cf-field full">
+            <label for="cf-message">Tell us about your project <span class="req">*</span></label>
+            <textarea id="cf-message" name="message" placeholder="Goals, timeline, channels — whatever helps us understand where you want to go." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Send message <span class="ar">→</span></button>
+          <p class="cf-note">We'll get back to you within one business day.</p>
+        </form>
+      </div>
+
+      <!-- Contact details -->
+      <div class="contact-info reveal" data-delay="1">
+        <div class="ci-col email">
+          <span class="k">Email us</span>
+          <a class="v" href="mailto:Gio@wearewildgrowth.com">Gio@wearewildgrowth.com</a>
+        </div>
+        <div class="ci-col">
+          <span class="k">Call / WhatsApp</span>
+          <a class="v"
+            href="https://wa.me/59892655745?text=Hola%20Wild%20Growth%2C%20quiero%20conversar%20sobre%20un%20proyecto."
+            target="_blank" rel="noopener">+598 92 655 745</a>
+          <span class="vsub">WhatsApp · Uruguay</span>
+          <a class="v" href="tel:+14637101571">+1 463 710 1571</a>
+          <span class="vsub">Phone · USA</span>
+        </div>
+        <div class="ci-col">
+          <span class="k">Studio</span>
+          <span class="v">Buenos Aires, Argentina</span>
+          <span class="vsub">GMT−3 (ART) · Mon — Fri · 9 to 19<br />Reply within 1 business day</span>
+        </div>
+        <div class="ci-col">
+          <span class="k">Follow</span>
+          <a class="v" href="https://www.instagram.com/teamwildgrowth/" target="_blank" rel="noopener">Instagram ↗</a>
+          <a class="v" href="https://www.linkedin.com/company/wildgrowth/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
       </div>
     </div>
   </section>
@@ -1667,7 +1724,7 @@
             <li><a href="index.html#work">Work</a></li>
             <li><a href="featured-cases.html">Featured Cases</a></li>
             <li><a href="index.html#team">Team</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
         <div>
@@ -1709,19 +1766,32 @@
     toggle.addEventListener('click', () => mnav.classList.toggle('open'));
     mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mnav.classList.remove('open')));
 
-    // Work tabs
-    const tabs = document.querySelectorAll('.work-tab');
-    const panels = document.querySelectorAll('.work-panel');
-    tabs.forEach((tab, i) => {
-      const activate = () => {
-        tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-        panels.forEach(p => p.classList.remove('active'));
-        tab.classList.add('active'); tab.setAttribute('aria-selected', 'true');
-        panels[i].classList.add('active');
-      };
-      tab.addEventListener('click', activate);
-      tab.addEventListener('mouseenter', activate);
-    });
+    // Contact form — compose an email with the submitted details
+    const cform = document.getElementById('contact-form');
+    if (cform) {
+      cform.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const val = (n) => (cform.elements[n]?.value || '').trim();
+        const needs = Array.from(cform.querySelectorAll('input[name="needs"]:checked'))
+          .map(c => c.value);
+        const name = val('name');
+        const lines = [
+          `Name: ${name}`,
+          `Company: ${val('company') || '—'}`,
+          `Email: ${val('email')}`,
+          `Phone: ${val('phone') || '—'}`,
+          `Needs: ${needs.length ? needs.join(', ') : '—'}`,
+          `Budget (USD/mo): ${val('budget') || '—'}`,
+          '',
+          'Project:',
+          val('message')
+        ];
+        const subject = `New project enquiry${name ? ' — ' + name : ''}`;
+        const href = `mailto:Gio@wearewildgrowth.com?subject=${encodeURIComponent(subject)}`
+          + `&body=${encodeURIComponent(lines.join('\n'))}`;
+        window.location.href = href;
+      });
+    }
 
     // Reveal on scroll
     const io = new IntersectionObserver((entries) => {

@@ -19,8 +19,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet" />
 
   <style>
@@ -169,8 +168,13 @@
       transition: transform .45s cubic-bezier(.2, 1, .2, 1);
     }
 
-    .btn:hover { transform: translateY(-3px); }
-    .btn:hover::before { transform: translateY(0); }
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn:hover::before {
+      transform: translateY(0);
+    }
 
     .btn .ar {
       transition: transform .35s cubic-bezier(.2, 1, .2, 1);
@@ -185,7 +189,11 @@
       background: var(--ink);
       color: #fff;
     }
-    .btn-primary::before { background: var(--lime); }
+
+    .btn-primary::before {
+      background: var(--lime);
+    }
+
     .btn-primary:hover {
       color: var(--ink);
       border-color: var(--ink);
@@ -197,7 +205,11 @@
       color: var(--ink);
       border-color: var(--lime);
     }
-    .btn-lime::before { background: var(--ink); }
+
+    .btn-lime::before {
+      background: var(--ink);
+    }
+
     .btn-lime:hover {
       color: #fff;
       border-color: var(--ink);
@@ -208,7 +220,11 @@
       background: transparent;
       color: var(--ink);
     }
-    .btn-ghost::before { background: var(--ink); }
+
+    .btn-ghost::before {
+      background: var(--ink);
+    }
+
     .btn-ghost:hover {
       color: #fff;
       border-color: var(--ink);
@@ -482,22 +498,22 @@
       padding-bottom: 0.04em;
     }
 
-    .hero h1 .line > span {
+    .hero h1 .line>span {
       display: block;
       transform: translateY(110%);
       transition: transform 0.8s cubic-bezier(0.2, 1, 0.2, 1);
     }
 
-    .hero h1.in .line > span {
+    .hero h1.in .line>span {
       transform: translateY(0);
     }
 
-    .hero h1 .line:nth-child(2) > span {
+    .hero h1 .line:nth-child(2)>span {
       transition-delay: 0.12s;
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .hero h1 .line > span {
+      .hero h1 .line>span {
         transform: none;
         transition: none;
       }
@@ -811,12 +827,32 @@
     }
 
     /* asymmetric placement + vertical offsets */
-    .wcard:nth-child(1) { grid-column: 1 / span 7; }
-    .wcard:nth-child(2) { grid-column: 9 / span 4; margin-top: clamp(60px, 9vw, 150px); }
-    .wcard:nth-child(3) { grid-column: 1 / span 4; }
-    .wcard:nth-child(4) { grid-column: 6 / span 7; margin-top: clamp(-40px, -3vw, 0px); }
-    .wcard:nth-child(5) { grid-column: 1 / span 7; margin-top: clamp(40px, 6vw, 90px); }
-    .wcard:nth-child(6) { grid-column: 9 / span 4; }
+    .wcard:nth-child(1) {
+      grid-column: 1 / span 7;
+    }
+
+    .wcard:nth-child(2) {
+      grid-column: 9 / span 4;
+      margin-top: clamp(60px, 9vw, 150px);
+    }
+
+    .wcard:nth-child(3) {
+      grid-column: 1 / span 4;
+    }
+
+    .wcard:nth-child(4) {
+      grid-column: 6 / span 7;
+      margin-top: clamp(-40px, -3vw, 0px);
+    }
+
+    .wcard:nth-child(5) {
+      grid-column: 1 / span 7;
+      margin-top: clamp(40px, 6vw, 90px);
+    }
+
+    .wcard:nth-child(6) {
+      grid-column: 9 / span 4;
+    }
 
     .wcard .shot {
       position: relative;
@@ -840,12 +876,29 @@
     }
 
     /* varied aspect ratios for editorial rhythm */
-    .wcard:nth-child(1) .shot { aspect-ratio: 4 / 3; }
-    .wcard:nth-child(2) .shot { aspect-ratio: 3 / 4; }
-    .wcard:nth-child(3) .shot { aspect-ratio: 3 / 4; }
-    .wcard:nth-child(4) .shot { aspect-ratio: 16 / 10; }
-    .wcard:nth-child(5) .shot { aspect-ratio: 5 / 4; }
-    .wcard:nth-child(6) .shot { aspect-ratio: 3 / 4; }
+    .wcard:nth-child(1) .shot {
+      aspect-ratio: 4 / 3;
+    }
+
+    .wcard:nth-child(2) .shot {
+      aspect-ratio: 3 / 4;
+    }
+
+    .wcard:nth-child(3) .shot {
+      aspect-ratio: 3 / 4;
+    }
+
+    .wcard:nth-child(4) .shot {
+      aspect-ratio: 16 / 10;
+    }
+
+    .wcard:nth-child(5) .shot {
+      aspect-ratio: 5 / 4;
+    }
+
+    .wcard:nth-child(6) .shot {
+      aspect-ratio: 3 / 4;
+    }
 
     .wcard .wc-meta {
       display: flex;
@@ -1193,7 +1246,9 @@
       color: #fff;
     }
 
-    .cta .btn-ghost::before { background: #fff; }
+    .cta .btn-ghost::before {
+      background: #fff;
+    }
 
     .cta .btn-ghost:hover {
       color: var(--ink);
@@ -1367,10 +1422,21 @@
       }
 
       /* tablet: two even columns, reset offsets */
-      .work-grid .wcard:nth-child(odd) { grid-column: 1 / span 6; }
-      .work-grid .wcard:nth-child(even) { grid-column: 7 / span 6; }
-      .work-grid .wcard { margin-top: 0 !important; }
-      .work-grid .wcard .shot { aspect-ratio: 3 / 4 !important; }
+      .work-grid .wcard:nth-child(odd) {
+        grid-column: 1 / span 6;
+      }
+
+      .work-grid .wcard:nth-child(even) {
+        grid-column: 7 / span 6;
+      }
+
+      .work-grid .wcard {
+        margin-top: 0 !important;
+      }
+
+      .work-grid .wcard .shot {
+        aspect-ratio: 3 / 4 !important;
+      }
 
       .sol-row {
         grid-template-columns: 1fr;
@@ -1452,13 +1518,12 @@
       <nav class="nav">
         <a href="#what">What we do</a>
         <a href="#work">Work</a>
-        <a href="featured-cases.html">Cases</a>
-        <a href="#services">Services</a>
         <a href="#team">Team</a>
-        <a href="#contact">Contact</a>
+        <a href="featured-cases.html">Cases</a>
+        <a href="contact.html">Contact</a>
       </nav>
       <div class="header-actions">
-        <a href="#contact" class="header-cta">Say Hello</a>
+        <a href="contact.html" class="header-cta">Say Hello</a>
       </div>
       <button class="menu-toggle" aria-label="Open menu" id="menu-toggle">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
@@ -1469,10 +1534,9 @@
     <div class="mobile-nav" id="mobile-nav">
       <a href="#what">What we do</a>
       <a href="#work">Work</a>
-      <a href="featured-cases.html">Cases</a>
-      <a href="#services">Services</a>
       <a href="#team">Team</a>
-      <a href="#contact">Contact</a>
+      <a href="featured-cases.html">Cases</a>
+      <a href="contact.html">Contact</a>
     </div>
   </header>
 
@@ -1481,7 +1545,8 @@
     <div class="wrap">
       <h1 class="display reveal" data-delay="1">
         <span class="line"><span>Creative that drives</span></span>
-        <span class="line"><span>real <span class="lime-mark rotator"><span class="rot-word">growth.</span></span></span></span>
+        <span class="line"><span>real <span class="lime-mark rotator"><span
+                class="rot-word">growth.</span></span></span></span>
       </h1>
 
       <div class="hero-bottom">
@@ -1491,7 +1556,7 @@
         </p>
         <div class="hero-actions reveal" data-delay="3">
           <a href="#work" class="btn btn-primary">View all work <span class="ar">→</span></a>
-          <a href="#contact" class="btn btn-ghost">Book a call</a>
+          <a href="contact.html" class="btn btn-ghost">Start a project</a>
         </div>
       </div>
     </div>
@@ -1510,7 +1575,7 @@
         <!-- <span class="num">01</span> -->
         <h3>Strategy</h3>
         <p>We define direction, goals and growth opportunities — turning insight into a roadmap.</p>
-        <a href="#contact" class="arrow-link">Learn more</a>
+        <a href="contact.html" class="arrow-link">Learn more</a>
       </div>
       <div class="sol-media"><img src="selected_work_images/atlantic-containers.jpg" alt="Strategy" /></div>
     </div>
@@ -1519,7 +1584,7 @@
         <!-- <span class="num">02</span> -->
         <h3>Creative</h3>
         <p>Visual pieces and messages built to attract, connect and convert — never decoration.</p>
-        <a href="#contact" class="arrow-link">Learn more</a>
+        <a href="contact.html" class="arrow-link">Learn more</a>
       </div>
       <div class="sol-media"><img src="clients/galeria-1.jpg" alt="Creative" /></div>
     </div>
@@ -1528,7 +1593,7 @@
         <!-- <span class="num">03</span> -->
         <h3>Performance</h3>
         <p>We optimize campaigns, metrics and funnels to improve measurable results.</p>
-        <a href="#contact" class="arrow-link">Learn more</a>
+        <a href="contact.html" class="arrow-link">Learn more</a>
       </div>
       <div class="sol-media"><img src="clients/entrenate-1.jpg" alt="Performance" /></div>
     </div>
@@ -1537,7 +1602,7 @@
         <!-- <span class="num">04</span> -->
         <h3>Growth</h3>
         <p>We test, measure and refine — scaling what works to take brands to the next level.</p>
-        <a href="#contact" class="arrow-link">Learn more</a>
+        <a href="contact.html" class="arrow-link">Learn more</a>
       </div>
       <div class="sol-media"><img src="clients/smash-3.jpg" alt="Growth" /></div>
     </div>
@@ -1734,6 +1799,11 @@
           <span class="role">UI/UX Designer</span>
         </div>
         <div class="person">
+          <div class="photo"><img src="team/enrique.jpeg" alt="Enrique Uzcategui" /></div>
+          <span class="name">Enrique Uzcategui</span>
+          <span class="role">Software Engineer &amp; AI Specialist</span>
+        </div>
+        <div class="person">
           <div class="photo"><img src="team/studio-01.jpg" alt="Wild Growth Studio" /></div>
           <span class="name">The Studio</span>
           <span class="role">Where it all happens</span>
@@ -1787,9 +1857,7 @@
         with strategy, content and performance.
       </p>
       <div class="actions reveal" data-delay="3">
-        <a href="https://wa.me/59892655745?text=Hola%20Wild%20Growth%2C%20quiero%20conversar%20sobre%20un%20proyecto."
-          class="btn btn-lime" target="_blank" rel="noopener">Write on WhatsApp <span class="ar">→</span></a>
-        <a href="mailto:hello@teamwildgrowth.com" class="btn btn-ghost">Book a call</a>
+        <a href="contact.html" class="btn btn-lime">Start a project <span class="ar">→</span></a>
       </div>
     </div>
   </section>
@@ -1806,11 +1874,10 @@
           <h5>Menu</h5>
           <ul>
             <li><a href="#what">What we do</a></li>
-            <li><a href="#services">Services</a></li>
             <li><a href="#work">Work</a></li>
             <li><a href="featured-cases.html">Featured Cases</a></li>
             <li><a href="#team">Team</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
         <div>
