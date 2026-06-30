@@ -1219,7 +1219,7 @@
 
     .footer-top {
       display: grid;
-      grid-template-columns: 1.6fr 1fr 1fr 1.4fr;
+      grid-template-columns: 2fr 1fr 1fr;
       gap: 56px;
       padding-bottom: 56px;
       border-bottom: 1px solid rgba(255, 255, 255, .14);
@@ -1261,43 +1261,6 @@
 
     .footer ul a:hover {
       color: var(--lime);
-    }
-
-    .news-form {
-      display: flex;
-      gap: 8px;
-      margin-top: 8px;
-    }
-
-    .news-form input {
-      flex: 1;
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, .25);
-      border-radius: 999px;
-      padding: 12px 18px;
-      color: #fff;
-      font-family: var(--body);
-      font-size: 14px;
-    }
-
-    .news-form input::placeholder {
-      color: rgba(255, 255, 255, .45);
-    }
-
-    .news-form button {
-      background: var(--lime);
-      color: var(--ink);
-      border: none;
-      border-radius: 999px;
-      padding: 0 22px;
-      font-family: var(--display);
-      font-weight: 800;
-      text-transform: uppercase;
-      font-size: 13px;
-    }
-
-    .news-form button:hover {
-      background: #fff;
     }
 
     .footer-bottom {
@@ -1639,8 +1602,8 @@
   <section class="cta" id="contact">
     <div class="wrap">
       <span class="eyebrow reveal"
-        style="color:rgba(255,255,255,.7); justify-content:center; display:inline-flex; margin-bottom:28px;">[ next step
-        ]</span>
+        style="color:rgba(255,255,255,.7); justify-content:center; display:inline-flex; margin-bottom:28px;">next
+        step</span>
       <h2 class="reveal" data-delay="1">Let's turn ideas into <span class="lime">impact.</span></h2>
       <p class="reveal" data-delay="2">
         Tell us where your brand is today and let's design what comes next —
@@ -1679,15 +1642,6 @@
             <li><a href="https://wa.me/59892655745" target="_blank" rel="noopener">WhatsApp ↗</a></li>
           </ul>
         </div>
-        <div>
-          <h5>Newsletter</h5>
-          <p style="color:rgba(255,255,255,.7); margin:0 0 16px; font-size:14px;">Growth notes, no spam. Once a month.
-          </p>
-          <form class="news-form" onsubmit="return false;">
-            <input type="email" placeholder="your@email.com" aria-label="Email" />
-            <button type="submit">Join</button>
-          </form>
-        </div>
       </div>
       <div class="footer-bottom">
         <span>© 2026 Wild Growth · All rights reserved</span>
@@ -1708,20 +1662,6 @@
     const mnav = document.getElementById('mobile-nav');
     toggle.addEventListener('click', () => mnav.classList.toggle('open'));
     mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mnav.classList.remove('open')));
-
-    // Work tabs
-    const tabs = document.querySelectorAll('.work-tab');
-    const panels = document.querySelectorAll('.work-panel');
-    tabs.forEach((tab, i) => {
-      const activate = () => {
-        tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-        panels.forEach(p => p.classList.remove('active'));
-        tab.classList.add('active'); tab.setAttribute('aria-selected', 'true');
-        panels[i].classList.add('active');
-      };
-      tab.addEventListener('click', activate);
-      tab.addEventListener('mouseenter', activate);
-    });
 
     // Reveal on scroll
     const io = new IntersectionObserver((entries) => {
