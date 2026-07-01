@@ -701,26 +701,81 @@
       transform: translateY(0);
     }
 
-    /* Thumbnail slides in on hover */
-    .svc-thumb {
-      width: 96px;
-      height: 58px;
-      border-radius: 4px;
-      overflow: hidden;
+    /* Animated line icon reveals + self-draws on hover (WildFi style) */
+    .svc-icon {
+      width: 66px;
+      height: 66px;
+      display: grid;
+      place-items: center;
+      color: var(--blue);
       opacity: 0;
-      transform: translateX(14px) scale(.9);
+      transform: translateX(14px);
       transition: opacity .45s, transform .45s cubic-bezier(.2, 1, .2, 1);
     }
 
-    .svc-thumb img {
+    .svc-icon svg {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      overflow: visible;
     }
 
-    .svc-row:hover .svc-thumb {
+    .svc-icon svg [data-draw] {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      transition: stroke-dashoffset .75s cubic-bezier(.6, 0, .2, 1);
+    }
+
+    .svc-icon svg [data-draw]:nth-child(2) {
+      transition-delay: .08s;
+    }
+
+    .svc-icon svg [data-draw]:nth-child(3) {
+      transition-delay: .16s;
+    }
+
+    .svc-icon svg [data-draw]:nth-child(4) {
+      transition-delay: .24s;
+    }
+
+    .svc-row:hover .svc-icon {
       opacity: 1;
-      transform: translateX(0) scale(1);
+      transform: translateX(0);
+    }
+
+    .svc-row:hover .svc-icon svg [data-draw] {
+      stroke-dashoffset: 0;
+    }
+
+    .svc-row:hover .svc-icon svg {
+      animation: svcFloat 2.6s ease-in-out .3s infinite;
+    }
+
+    @keyframes svcFloat {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-4px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .svc-icon svg [data-draw] {
+        transition: none;
+        stroke-dashoffset: 0;
+      }
+
+      .svc-row:hover .svc-icon svg {
+        animation: none;
+      }
     }
 
     /* Arrow appears on hover */
@@ -747,7 +802,7 @@
         padding: 22px 4px;
       }
 
-      .svc-thumb {
+      .svc-icon {
         display: none;
       }
 
@@ -1633,7 +1688,12 @@
             <span class="label">Growth Strategy &amp; Systems</span>
             <span class="desc">Smart, automated systems that grow with intention.</span>
           </span>
-          <span class="svc-thumb"><img src="clients/atlantic-2.jpg" alt="" /></span>
+          <span class="svc-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <polyline data-draw pathLength="1" points="10 44 26 28 36 36 54 16" />
+              <polyline data-draw pathLength="1" points="44 16 54 16 54 26" />
+            </svg>
+          </span>
           <span class="svc-arrow">→</span>
         </a>
         <a class="svc-row" href="featured-cases.html">
@@ -1642,7 +1702,13 @@
             <span class="label">Performance Paid Media</span>
             <span class="desc">Conversion-focused campaigns that scale revenue.</span>
           </span>
-          <span class="svc-thumb"><img src="selected_work_images/mancru.png" alt="" /></span>
+          <span class="svc-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <circle data-draw pathLength="1" cx="32" cy="32" r="21" />
+              <circle data-draw pathLength="1" cx="32" cy="32" r="11" />
+              <circle data-draw pathLength="1" cx="32" cy="32" r="2.5" />
+            </svg>
+          </span>
           <span class="svc-arrow">→</span>
         </a>
         <a class="svc-row" href="featured-cases.html">
@@ -1651,7 +1717,12 @@
             <span class="label">Creatives &amp; Branding</span>
             <span class="desc">Brand identity, positioning and voice that convert.</span>
           </span>
-          <span class="svc-thumb"><img src="clients/galeria-1.png" alt="" /></span>
+          <span class="svc-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <path data-draw pathLength="1"
+                d="M32 10 L37 27 L54 32 L37 37 L32 54 L27 37 L10 32 L27 27 Z" />
+            </svg>
+          </span>
           <span class="svc-arrow">→</span>
         </a>
         <a class="svc-row" href="featured-cases.html">
@@ -1660,7 +1731,13 @@
             <span class="label">Web Development &amp; CRO</span>
             <span class="desc">Fast, high-converting Shopify &amp; custom builds.</span>
           </span>
-          <span class="svc-thumb"><img src="clients/smash-2.jpg" alt="" /></span>
+          <span class="svc-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <polyline data-draw pathLength="1" points="24 22 12 32 24 42" />
+              <polyline data-draw pathLength="1" points="40 22 52 32 40 42" />
+              <line data-draw pathLength="1" x1="34" y1="18" x2="30" y2="46" />
+            </svg>
+          </span>
           <span class="svc-arrow">→</span>
         </a>
         <a class="svc-row" href="featured-cases.html">
@@ -1669,7 +1746,14 @@
             <span class="label">Growth Analytics &amp; BI</span>
             <span class="desc">Dashboards that turn metrics into decisions.</span>
           </span>
-          <span class="svc-thumb"><img src="clients/entrenate-1.jpg" alt="" /></span>
+          <span class="svc-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <polyline data-draw pathLength="1" points="12 12 12 52 52 52" />
+              <line data-draw pathLength="1" x1="22" y1="52" x2="22" y2="38" />
+              <line data-draw pathLength="1" x1="34" y1="52" x2="34" y2="24" />
+              <line data-draw pathLength="1" x1="46" y1="52" x2="46" y2="32" />
+            </svg>
+          </span>
           <span class="svc-arrow">→</span>
         </a>
         <a class="svc-row" href="featured-cases.html">
@@ -1678,7 +1762,15 @@
             <span class="label">Marketing Automation</span>
             <span class="desc">Flows, sequences &amp; CRM logic that lift sales.</span>
           </span>
-          <span class="svc-thumb"><img src="clients/amelie-1.jpg" alt="" /></span>
+          <span class="svc-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <line data-draw pathLength="1" x1="20" y1="20" x2="42" y2="30" />
+              <line data-draw pathLength="1" x1="20" y1="44" x2="42" y2="34" />
+              <circle data-draw pathLength="1" cx="16" cy="20" r="5" />
+              <circle data-draw pathLength="1" cx="16" cy="44" r="5" />
+              <circle data-draw pathLength="1" cx="46" cy="32" r="6" />
+            </svg>
+          </span>
           <span class="svc-arrow">→</span>
         </a>
       </div>
