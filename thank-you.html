@@ -4,9 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Wild Growth®</title>
+  <title>Thank you — Wild Growth®</title>
   <meta name="description"
-    content="Let's turn ideas into impact. Strategic marketing for brands that want to grow — tell us about your project and we'll reply within one business day." />
+    content="Thanks for reaching out to Wild Growth. Your project details are on their way — we'll reply within one business day." />
+  <meta name="robots" content="noindex" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="brand/wild-w-white-favicon.png" sizes="32x32" />
@@ -15,7 +16,7 @@
 
   <!-- OpenGraph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Contact — Wild Growth®" />
+  <meta property="og:title" content="Thank you — Wild Growth®" />
   <meta property="og:description"
     content="Creative is our language. Performance is our mindset. Digital experiences focused on performance and growth." />
   <meta property="og:url" content="https://teamwildgrowth.com/" />
@@ -1481,6 +1482,189 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* ============ THANK YOU PAGE ============ */
+    .ty-hero {
+      padding: clamp(150px, 18vh, 220px) 0 clamp(60px, 8vw, 110px);
+      text-align: center;
+    }
+
+    .ty-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    /* Animated drawn check inside a ring */
+    .ty-check {
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 34px;
+      color: var(--blue);
+    }
+
+    .ty-check svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .ty-check svg [data-draw] {
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+    }
+
+    .ty-check .ring {
+      stroke-width: 2.4;
+    }
+
+    .ty-check .tick {
+      stroke-width: 3;
+      color: var(--blue);
+    }
+
+    .ty-check.go .ring {
+      animation: tyDraw .7s cubic-bezier(.6, 0, .2, 1) forwards;
+    }
+
+    .ty-check.go .tick {
+      animation: tyDraw .5s cubic-bezier(.6, 0, .2, 1) .5s forwards;
+    }
+
+    @keyframes tyDraw {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .ty-hero h1 {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: clamp(46px, 9vw, 120px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+
+    .ty-hero h1 .lime-mark {
+      background: var(--lime);
+      padding: 0 0.12em;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    .ty-hero .lead {
+      margin: 26px auto 0;
+      max-width: 52ch;
+    }
+
+    .ty-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    /* Summary card — echoes the submitted details */
+    .ty-summary {
+      max-width: 640px;
+      margin: clamp(40px, 6vw, 72px) auto 0;
+      background: var(--bg-2);
+      border-radius: var(--radius-lg);
+      padding: clamp(26px, 3.5vw, 44px);
+      text-align: left;
+    }
+
+    .ty-summary .sum-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--display);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      color: var(--ink-3);
+      margin-bottom: 22px;
+    }
+
+    .ty-summary .sum-head::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--lime);
+      flex: none;
+    }
+
+    .ty-summary dl {
+      margin: 0;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 14px 20px;
+    }
+
+    .ty-summary dt {
+      font-family: var(--display);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: var(--ink-3);
+      padding-top: 2px;
+    }
+
+    .ty-summary dd {
+      margin: 0;
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+
+    .ty-summary dd .chip {
+      display: inline-block;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-size: 12.5px;
+      font-weight: 600;
+      margin: 0 6px 6px 0;
+    }
+
+    .ty-summary dd.msg {
+      white-space: pre-wrap;
+    }
+
+    @media (max-width: 560px) {
+      .ty-summary dl {
+        grid-template-columns: 1fr;
+        gap: 4px 0;
+      }
+
+      .ty-summary dt {
+        padding-top: 14px;
+      }
+
+      .ty-summary dt:first-child {
+        padding-top: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .ty-check .ring,
+      .ty-check .tick {
+        stroke-dashoffset: 0;
+        animation: none;
+      }
+    }
   </style>
 </head>
 
@@ -1517,110 +1701,45 @@
     </div>
   </header>
 
-  <!-- ============ PAGE HERO ============ -->
-  <section class="fc-hero">
+  <!-- ============ THANK YOU ============ -->
+  <section class="ty-hero" id="contact">
     <div class="wrap">
-      <div class="section-label reveal">Contact</div>
-      <h1 class="reveal" data-delay="1">Let's turn ideas<br />into <span class="lime-mark">impact.</span></h1>
-      <p class="lead reveal" data-delay="2">
-        Strategic marketing for brands that want to grow. Tell us where your brand is today —
-        we reply within one business day.
-      </p>
-    </div>
-  </section>
-
-  <!-- ============ CONTACT ============ -->
-  <section class="section contact-sec" id="contact">
-    <div class="wrap">
-      <div class="contact-wrap">
-        <form class="contact-form reveal" id="contact-form">
-          <div class="cf-head">
-            <h3>Tell us about your project</h3>
-            <p>Four quick fields and a few details — the more we know, the sharper our first reply.</p>
-          </div>
-          <div class="cf-row">
-            <div class="cf-field">
-              <label for="cf-name">Full name <span class="req">*</span></label>
-              <input type="text" id="cf-name" name="name" placeholder="Jane Doe" required />
-            </div>
-            <div class="cf-field">
-              <label for="cf-company">Company</label>
-              <input type="text" id="cf-company" name="company" placeholder="Your brand" />
-            </div>
-            <div class="cf-field">
-              <label for="cf-email">Email <span class="req">*</span></label>
-              <input type="email" id="cf-email" name="email" placeholder="you@email.com" required />
-            </div>
-            <div class="cf-field">
-              <label for="cf-phone">Phone</label>
-              <input type="tel" id="cf-phone" name="phone" placeholder="+1 555 000 0000" />
-            </div>
-          </div>
-
-          <div class="cf-needs">
-            <span class="lbl">What do you need?</span>
-            <div class="cf-chips">
-              <label class="cf-chip"><input type="checkbox" name="needs" value="Growth Strategy" /><span>Growth
-                  Strategy</span></label>
-              <label class="cf-chip"><input type="checkbox" name="needs" value="Paid Media" /><span>Paid
-                  Media</span></label>
-              <label class="cf-chip"><input type="checkbox" name="needs" value="Creative & Branding" /><span>Creative
-                  &amp; Branding</span></label>
-              <label class="cf-chip"><input type="checkbox" name="needs" value="Web & CRO" /><span>Web &amp;
-                  CRO</span></label>
-              <label class="cf-chip"><input type="checkbox" name="needs" value="Analytics & BI" /><span>Analytics &amp;
-                  BI</span></label>
-              <label class="cf-chip"><input type="checkbox" name="needs" value="Marketing Automation" /><span>Marketing
-                  Automation</span></label>
-            </div>
-          </div>
-
-          <div class="cf-field full">
-            <label for="cf-message">Tell us about your project <span class="req">*</span></label>
-            <textarea id="cf-message" name="message"
-              placeholder="Goals, timeline, channels — whatever helps us understand where you want to go."
-              required></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary">Send message <span class="ar">→</span></button>
-          <p class="cf-note">We'll get back to you within one business day.</p>
-        </form>
-      </div>
-
-      <!-- Contact details -->
-      <div class="contact-info reveal" data-delay="1">
-        <div class="ci-col email">
-          <span class="k">Email us</span>
-          <a class="v" href="mailto:Gio@wearewildgrowth.com">Gio@wearewildgrowth.com</a>
+      <div class="ty-wrap">
+        <div class="ty-check reveal" id="ty-check" aria-hidden="true">
+          <svg viewBox="0 0 64 64">
+            <circle class="ring" data-draw pathLength="1" cx="32" cy="32" r="28" />
+            <polyline class="tick" data-draw pathLength="1" points="20 33 29 42 45 24" />
+          </svg>
         </div>
-        <div class="ci-col">
-          <span class="k">Call / WhatsApp</span>
-          <a class="v"
-            href="https://wa.me/59892655745?text=Hola%20Wild%20Growth%2C%20quiero%20conversar%20sobre%20un%20proyecto."
-            target="_blank" rel="noopener">+598 92 655 745</a>
-          <span class="vsub">WhatsApp · Uruguay</span>
-          <a class="v" href="tel:+14637101571">+1 463 710 1571</a>
-          <span class="vsub">Phone · USA</span>
+        <div class="section-label reveal" data-delay="1">Message sent</div>
+        <h1 class="reveal" data-delay="1">Thank <span class="lime-mark">you.</span></h1>
+        <p class="lead reveal" data-delay="2">
+          Your project details are on their way to our team. We read every message ourselves and
+          you'll hear back from us within one business day.
+        </p>
+
+        <!-- Summary of what was submitted (echoed back to the sender) -->
+        <div class="ty-summary reveal" data-delay="2" id="ty-summary">
+          <div class="sum-head">Here's what you sent us</div>
+          <dl>
+            <dt>Name</dt>
+            <dd data-field="name">—</dd>
+            <dt>Company</dt>
+            <dd data-field="company">—</dd>
+            <dt>Email</dt>
+            <dd data-field="email">—</dd>
+            <dt>Phone</dt>
+            <dd data-field="phone">—</dd>
+            <dt>Needs</dt>
+            <dd data-field="needs">—</dd>
+            <dt>Project</dt>
+            <dd class="msg" data-field="message">—</dd>
+          </dl>
         </div>
-        <div class="ci-col">
-          <span class="k">Studio</span>
-          <span class="v">Indiana, USA &amp; Uruguay</span>
-          <span class="vsub">GMT−5 (ET) · GMT−3 (UYT) <br> Mon — Fri · 9 to 19<br />Reply within 1 business day</span>
-        </div>
-        <div class="ci-col">
-          <span class="k">Follow</span>
-          <a class="v ext" href="https://www.instagram.com/teamwildgrowth/" target="_blank" rel="noopener">Instagram<svg
-              class="exti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M7 17 17 7" />
-              <path d="M8 7h9v9" />
-            </svg></a>
-          <a class="v ext" href="https://www.linkedin.com/company/wildgrowth/" target="_blank"
-            rel="noopener">LinkedIn<svg class="exti" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M7 17 17 7" />
-              <path d="M8 7h9v9" />
-            </svg></a>
+
+        <div class="ty-actions reveal" data-delay="3">
+          <a href="index.html" class="btn btn-primary">Back to home <span class="ar">→</span></a>
+          <a href="featured-cases.html" class="btn btn-ghost">View our work</a>
         </div>
       </div>
     </div>
@@ -1688,27 +1807,39 @@
     toggle.addEventListener('click', () => mnav.classList.toggle('open'));
     mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mnav.classList.remove('open')));
 
-    // Contact form.
-    // NOTE: no backend wired yet — on submit we just forward the details to the
-    // thank-you page so it can echo them back. When the backend is ready this is
-    // where we'll POST the payload so the enquiry reaches Giovanna's inbox
-    // (Gio@wearewildgrowth.com) before redirecting.
-    const cform = document.getElementById('contact-form');
-    if (cform) {
-      cform.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const val = (n) => (cform.elements[n]?.value || '').trim();
-        const needs = Array.from(cform.querySelectorAll('input[name="needs"]:checked'))
-          .map(c => c.value);
-        const params = new URLSearchParams({
-          name: val('name'),
-          company: val('company'),
-          email: val('email'),
-          phone: val('phone'),
-          needs: needs.join(', '),
-          message: val('message')
-        });
-        window.location.href = `thank-you.html?${params.toString()}`;
+    // Play the drawn-check animation once the page loads
+    const check = document.getElementById('ty-check');
+    if (check) requestAnimationFrame(() => check.classList.add('go'));
+
+    // Populate the summary from the submitted details (URL params).
+    // Falls back to sample data so the page can be previewed on its own.
+    const SAMPLE = {
+      name: 'Jane Doe',
+      company: 'Northwind Studio',
+      email: 'jane@northwind.co',
+      phone: '+1 463 710 1571',
+      needs: 'Growth Strategy, Paid Media, Web & CRO',
+      message: 'We\'re launching a new DTC line in Q3 and want a partner to own paid media and CRO. Target is 4× ROAS in the first 90 days — timeline is tight but budget is flexible.'
+    };
+    const params = new URLSearchParams(location.search);
+    const hasData = [...params.keys()].length > 0;
+    const get = (k) => (hasData ? (params.get(k) || '').trim() : SAMPLE[k]);
+    const summary = document.getElementById('ty-summary');
+    if (summary) {
+      summary.querySelectorAll('[data-field]').forEach((el) => {
+        const key = el.getAttribute('data-field');
+        const raw = get(key);
+        if (key === 'needs') {
+          const items = (raw || '').split(',').map(s => s.trim()).filter(Boolean);
+          if (items.length) {
+            el.innerHTML = items.map(v => `<span class="chip"></span>`).join('');
+            el.querySelectorAll('.chip').forEach((c, i) => { c.textContent = items[i]; });
+          } else {
+            el.textContent = '—';
+          }
+        } else {
+          el.textContent = raw || '—';
+        }
       });
     }
 
