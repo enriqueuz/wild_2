@@ -1535,7 +1535,8 @@
   <section class="section contact-sec" id="contact">
     <div class="wrap">
       <div class="contact-wrap">
-        <form class="contact-form reveal" id="contact-form">
+        <form class="contact-form reveal" id="contact-form" name="contact" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="contact" />
           <div class="cf-head">
             <h3>Tell us about your project</h3>
             <p>Four quick fields and a few details — the more we know, the sharper our first reply.</p>
@@ -1691,11 +1692,7 @@
     toggle.addEventListener('click', () => mnav.classList.toggle('open'));
     mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mnav.classList.remove('open')));
 
-    // Contact form.
-    // NOTE: no backend wired yet — on submit we just forward the details to the
-    // thank-you page so it can echo them back. When the backend is ready this is
-    // where we'll POST the payload so the enquiry reaches Giovanna's inbox
-    // (Gio@wearewildgrowth.com) before redirecting.
+    // Contact form with Netlify Forms support
     const cform = document.getElementById('contact-form');
     if (cform) {
       cform.addEventListener('submit', (e) => {
@@ -1703,15 +1700,30 @@
         const val = (n) => (cform.elements[n]?.value || '').trim();
         const needs = Array.from(cform.querySelectorAll('input[name="needs"]:checked'))
           .map(c => c.value);
-        const params = new URLSearchParams({
-          name: val('name'),
-          company: val('company'),
-          email: val('email'),
-          phone: val('phone'),
-          needs: needs.join(', '),
-          message: val('message')
+        
+        // Prepare submit data for Netlify Forms
+        const formData = new FormData(cform);
+
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString()
+        })
+        .then(() => {
+          const params = new URLSearchParams({
+            name: val('name'),
+            company: val('company'),
+            email: val('email'),
+            phone: val('phone'),
+            needs: needs.join(', '),
+            message: val('message')
+          });
+          window.location.href = `thank-you.html?${params.toString()}`;
+        })
+        .catch((error) => {
+          console.error('Error submitting form to Netlify:', error);
+          alert('There was an issue sending your message. Please try again.');
         });
-        window.location.href = `thank-you.html?${params.toString()}`;
       });
     }
 
