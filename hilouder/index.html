@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HiLouder — Guest Retention Software for Restaurants</title>
+  <meta name="description"
+    content="Turn walk-in guests into a customer list you can reach again. QR capture, SMS campaigns and promotion tracking for independent restaurants — no POS replacement required." />
+
+  <!-- Favicon (inline mark, no separate asset) -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%234426ff'/%3E%3Ctext x='50' y='69' font-family='Arial, sans-serif' font-size='56' font-weight='900' fill='white' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E" />
+
+  <!-- OpenGraph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="HiLouder — Guest Retention Software for Restaurants" />
+  <meta property="og:description"
+    content="Capture guests at the table. Bring them back by text. See which campaigns drive sales." />
+  <meta property="og:url" content="https://teamwildgrowth.com/hilouder/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ===========================================
+       HiLouder — guest retention for restaurants
+       Reuses the Wild Growth wild_2 design system
+       =========================================== */
+    :root {
+      --bg: #ffffff;
+      --bg-2: #f1f0ec;
+      --bg-3: #e8e7e1;
+      --ink: #0a0a0a;
+      --ink-2: #45454a;
+      --ink-3: #8a8a90;
+
+      --blue: #4426ff;
+      --blue-ink: #2b14d4;
+      --lime: #c9ff3c;
+      --lime-ink: #a7d916;
+
+      --line: rgba(10, 10, 10, 0.12);
+      --line-2: rgba(10, 10, 10, 0.22);
+
+      --max: 1480px;
+      --pad: clamp(20px, 5vw, 72px);
+      --radius: 6px;
+      --radius-lg: 18px;
+
+      --display: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --body: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-weight: 400;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+    img { display: block; max-width: 100%; }
+    ::selection { background: var(--lime); color: var(--ink); }
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 4px;
+    }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+
+    /* ============ TYPE ============ */
+    .display {
+      font-family: var(--display);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 0.92;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+    }
+
+    .lead {
+      font-family: var(--body);
+      font-size: clamp(17px, 1.4vw, 22px);
+      line-height: 1.5;
+      color: var(--ink-2);
+      max-width: 56ch;
+    }
+
+    /* ============ BUTTONS ============ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 30px;
+      border-radius: 999px;
+      font-family: var(--body);
+      font-size: 15px;
+      font-weight: 700;
+      border: 1.5px solid var(--ink);
+      transition: transform .35s cubic-bezier(.2, 1, .2, 1), background .3s, color .3s, border-color .3s;
+      white-space: nowrap;
+    }
+
+    .btn .ar { transition: transform .35s cubic-bezier(.2, 1, .2, 1); }
+    .btn:hover .ar { transform: translateX(5px); }
+
+    .btn-primary { background: var(--ink); color: #fff; }
+    .btn-primary:hover { background: var(--blue); border-color: var(--blue); transform: translateY(-3px); }
+
+    .btn-lime { background: var(--lime); color: var(--ink); border-color: var(--lime); }
+    .btn-lime:hover { background: var(--ink); color: #fff; border-color: var(--ink); transform: translateY(-3px); }
+
+    .btn-ghost { background: transparent; color: var(--ink); }
+    .btn-ghost:hover { background: var(--ink); color: #fff; transform: translateY(-3px); }
+
+    .cta .btn-ghost { border-color: rgba(255, 255, 255, .4); color: #fff; }
+    .cta .btn-ghost:hover { background: #fff; color: var(--ink); }
+
+    /* ============ HEADER (page-local nav) ============ */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .3s, background .3s;
+    }
+
+    .header.scrolled { border-color: var(--line); }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 78px;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+    }
+
+    .hl-logo {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: 21px;
+      letter-spacing: -0.01em;
+      text-transform: none;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .hl-logo .accent { color: var(--blue); }
+
+    .nav {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+    }
+
+    .nav a { padding: 10px 16px; border-radius: 999px; color: var(--ink); transition: background .25s, color .25s; }
+    .nav a:hover { background: var(--bg-2); }
+
+    .header-actions { display: flex; align-items: center; gap: 14px; }
+
+    .header-cta {
+      background: var(--blue);
+      color: #fff;
+      padding: 11px 22px;
+      border-radius: 999px;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 13.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      transition: background .3s, transform .3s;
+    }
+
+    .header-cta:hover { background: var(--ink); transform: translateY(-2px); }
+
+    @media (max-width: 760px) {
+      .nav { display: none; }
+    }
+
+    /* ============ SECTION COMMON ============ */
+    section { position: relative; }
+    .section { padding: clamp(72px, 9vw, 150px) 0; }
+    .section.alt { background: var(--bg-2); }
+    .section.ink { background: var(--ink); color: #fff; }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-2);
+      margin-bottom: 40px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section.ink .section-label { color: rgba(255, 255, 255, .6); border-color: rgba(255, 255, 255, .18); }
+
+    .section-head { max-width: 900px; margin: 0 0 56px; }
+    .section-head h2 {
+      margin: 0 0 18px;
+      font-family: var(--display);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      font-size: clamp(30px, 4vw, 54px);
+      line-height: 1;
+    }
+    .section-head p { margin: 0; font-size: 17px; line-height: 1.6; color: var(--ink-2); max-width: 62ch; }
+    .section-head.center p { margin-left: auto; margin-right: auto; }
+    .section.ink .section-head p { color: rgba(255,255,255,.78); }
+    .center { text-align: center; margin-left: auto; margin-right: auto; }
+
+    /* ============ HERO ============ */
+    .hl-hero {
+      padding: clamp(150px, 20vh, 240px) 0 80px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hl-hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(40px, 6vw, 90px);
+      align-items: center;
+    }
+
+    .hl-hero h1 {
+      margin: 18px 0 0;
+      font-family: var(--display);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      font-size: clamp(42px, 5.4vw, 74px);
+      line-height: 0.98;
+    }
+
+    .hl-hero .lead { margin-top: 24px; }
+
+    .hl-hero-actions { margin-top: 36px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+    .hl-hero-actions .micro { font-size: 13px; color: var(--ink-3); }
+
+    /* Flow diagram */
+    .hl-flow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      background: var(--bg-2);
+      border-radius: var(--radius-lg);
+      padding: clamp(28px, 4vw, 44px) 20px;
+    }
+
+    .hl-flow-node {
+      width: 100%;
+      max-width: 300px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .hl-flow-node.accent { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .hl-flow-node.result { background: var(--blue); color: #fff; border-color: var(--blue); }
+
+    .hl-flow-node .ic { flex: none; width: 22px; height: 22px; color: var(--blue); }
+    .hl-flow-node.accent .ic, .hl-flow-node.result .ic { color: var(--lime); }
+    .hl-flow-node small { display: block; font-weight: 400; color: var(--ink-3); font-size: 11.5px; margin-top: 2px; }
+    .hl-flow-node.accent small, .hl-flow-node.result small { color: rgba(255,255,255,.65); }
+
+    .hl-flow-arrow { color: var(--ink-3); margin: 8px 0; }
+    .hl-flow-arrow svg { width: 16px; height: 16px; }
+
+    /* ============ TRUST STRIP ============ */
+    .hl-trust {
+      padding: 30px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .hl-trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px 40px;
+      justify-content: center;
+    }
+    .hl-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink-2);
+    }
+    .hl-trust-item svg { flex: none; width: 18px; height: 18px; color: var(--blue); }
+
+    /* ============ PROBLEM ============ */
+    .hl-problem-intro { max-width: 760px; margin: 0 0 56px; }
+    .hl-problem-intro p { font-size: 18px; line-height: 1.7; color: var(--ink-2); margin: 0 0 14px; }
+    .hl-problem-intro p strong { color: var(--ink); }
+
+    .hl-pain-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .hl-pain-card {
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 32px 30px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .hl-pain-card .ic { width: 30px; height: 30px; color: var(--blue); }
+    .hl-pain-card h3 {
+      margin: 6px 0 0;
+      font-family: var(--display);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 19px;
+      line-height: 1.15;
+    }
+    .hl-pain-card p { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-2); }
+
+    .hl-note {
+      margin: 40px auto 0;
+      max-width: 640px;
+      text-align: center;
+      font-size: 15px;
+      color: var(--ink-3);
+      font-style: italic;
+    }
+
+    /* ============ COMPARISON ============ */
+    .hl-compare { max-width: 900px; margin: 0 auto; }
+    .hl-compare-head, .hl-compare-row {
+      display: grid;
+      grid-template-columns: 1fr 40px 1fr;
+      align-items: center;
+      gap: 16px;
+    }
+    .hl-compare-head { padding-bottom: 18px; }
+    .hl-compare-head span {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-3);
+      font-weight: 700;
+    }
+    .hl-compare-head span:last-child { color: var(--blue); }
+    .hl-compare-row { padding: 20px 0; border-top: 1px solid var(--line); }
+    .hl-compare-row:last-child { border-bottom: 1px solid var(--line); }
+    .hl-compare-row .before { font-size: 15.5px; color: var(--ink-3); }
+    .hl-compare-row .after { font-size: 15.5px; font-weight: 700; color: var(--ink); }
+    .hl-compare-row .arrow { justify-self: center; color: var(--ink-3); }
+    .hl-compare-row .arrow svg { width: 16px; height: 16px; }
+
+    /* ============ HOW IT WORKS ============ */
+    .hl-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+    .hl-step {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding-top: 26px;
+      border-top: 2px solid var(--ink);
+    }
+    .hl-step .num { font-family: var(--display); font-weight: 900; font-size: 13px; color: var(--blue); }
+    .hl-step h3 { margin: 0; font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 20px; }
+    .hl-step p { margin: 0; color: var(--ink-2); font-size: 14.5px; line-height: 1.6; }
+    .hl-steps-cta { margin-top: 56px; text-align: center; }
+
+    /* ============ FEATURES / WHAT YOU GET ============ */
+    .hl-feat-intro {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: clamp(30px, 5vw, 70px);
+      align-items: center;
+      margin-bottom: 64px;
+    }
+
+    .hl-mock {
+      background: var(--ink);
+      border-radius: 30px;
+      padding: 12px;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    .hl-mock-screen { background: #fff; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 12px; }
+    .hl-mock-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 12px;
+      margin-bottom: 4px;
+      border-bottom: 1px solid var(--line);
+    }
+    .hl-mock-header .hl-logo { font-size: 14px; }
+    .hl-mock-header .count { font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .04em; }
+    .hl-mock-header .count b { color: var(--ink); font-family: var(--display); }
+    .hl-bubble { max-width: 84%; padding: 10px 14px; border-radius: 14px; font-size: 13px; line-height: 1.45; }
+    .hl-bubble.out { align-self: flex-end; background: var(--blue); color: #fff; border-bottom-right-radius: 4px; }
+    .hl-bubble.in { align-self: flex-start; background: var(--bg-2); color: var(--ink); border-bottom-left-radius: 4px; }
+    .hl-mock-foot {
+      margin-top: 8px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--ink-3);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .hl-mock-foot b { color: var(--lime-ink); font-family: var(--display); }
+
+    .hl-feat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .hl-feat-card { background: #fff; padding: 32px 28px; display: flex; flex-direction: column; gap: 14px; }
+    .hl-feat-card .ic {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--bg-2);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue);
+    }
+    .hl-feat-card .ic svg { width: 20px; height: 20px; }
+    .hl-feat-card h3 { margin: 0; font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 16.5px; letter-spacing: -0.01em; }
+    .hl-feat-card p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--ink-2); }
+
+    /* ============ NO POS REPLACEMENT ============ */
+    .hl-nopos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 70px); align-items: center; }
+    .hl-nopos-text p { font-size: 17px; line-height: 1.7; color: var(--ink-2); margin: 0 0 14px; }
+    .hl-nopos-text p strong { color: var(--ink); }
+
+    .hl-stack { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    .hl-chip-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .hl-chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-size: 13.5px;
+      font-weight: 600;
+      background: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hl-chip svg { width: 15px; height: 15px; color: var(--blue); }
+    .hl-chip.accent {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+      font-family: var(--display);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      font-size: 13px;
+      padding: 14px 26px;
+    }
+    .hl-chip.accent svg { color: var(--lime); }
+    .hl-down-arrow svg { width: 20px; height: 20px; color: var(--ink-3); }
+
+    /* ============ DIFFERENTIATORS ============ */
+    .hl-diff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 56px; }
+    .hl-diff-card .num { font-family: var(--display); font-weight: 900; font-size: 15px; color: var(--blue); }
+    .section.ink .hl-diff-card .num { color: var(--lime); }
+    .hl-diff-card h3 { margin: 14px 0 10px; font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 22px; }
+    .hl-diff-card p { margin: 0; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,.72); }
+    .hl-diff-closing {
+      text-align: center;
+      font-family: var(--display);
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: clamp(26px, 3.4vw, 44px);
+      letter-spacing: -0.02em;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,.18);
+    }
+    .hl-diff-closing span { color: var(--lime); }
+
+    /* ============ ACTIVATION ============ */
+    .hl-activation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 70px); align-items: center; }
+    .hl-activation-text p { font-size: 17px; line-height: 1.7; color: var(--ink-2); margin: 0 0 14px; }
+    .hl-kit { display: flex; flex-direction: column; gap: 14px; background: var(--bg-2); border-radius: var(--radius-lg); padding: clamp(24px,3vw,36px); }
+    .hl-kit-item { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; font-size: 14px; font-weight: 600; }
+    .hl-kit-item svg { flex: none; width: 20px; height: 20px; color: var(--blue); }
+
+    /* ============ PRICING ============ */
+    .hl-pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
+    .hl-price-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+    }
+    .hl-price-card.featured { border-color: var(--lime-ink); box-shadow: 0 14px 34px rgba(0,0,0,.18); }
+    .hl-price-badge {
+      position: absolute;
+      top: -14px;
+      left: 32px;
+      background: var(--lime);
+      color: var(--ink);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+    .hl-price-name { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-2); font-weight: 700; }
+    .hl-price-amount { font-family: var(--display); font-weight: 900; font-size: clamp(38px, 3.4vw, 50px); line-height: 1; color: var(--ink); }
+    .hl-price-amount span { font-size: 15px; font-weight: 600; text-transform: none; color: var(--ink-2); }
+    .hl-price-cap { font-size: 14px; color: var(--ink-2); margin-top: -8px; }
+    .hl-price-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 14.5px; color: var(--ink-2); }
+    .hl-price-list li { display: flex; gap: 10px; align-items: flex-start; }
+    .hl-price-list li svg { flex: none; width: 16px; height: 16px; margin-top: 2px; color: var(--blue); }
+    .hl-price-card .btn { margin-top: auto; width: 100%; justify-content: center; }
+    .hl-pricing-note { text-align: center; margin-top: 36px; font-size: 13.5px; color: rgba(255,255,255,.65); }
+
+    /* ============ AFTER YOU BOOK ============ */
+    .hl-after-intro { max-width: 640px; margin: 0 auto 56px; text-align: center; }
+    .hl-after-intro p { font-size: 17px; line-height: 1.65; color: var(--ink-2); margin: 0; }
+    .hl-after-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+    .hl-after-card { display: flex; flex-direction: column; gap: 10px; }
+    .hl-after-card .num {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 14px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hl-after-card h3 { margin: 4px 0 0; font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 16.5px; }
+    .hl-after-card p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--ink-2); }
+
+    /* ============ FAQ ============ */
+    .hl-faq-list { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; }
+    .hl-faq-item { border-top: 1px solid var(--line); padding: 24px 0; }
+    .hl-faq-item:last-child { border-bottom: 1px solid var(--line); }
+    .hl-faq-item summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(16px, 1.8vw, 19px);
+      letter-spacing: -0.01em;
+    }
+    .hl-faq-item summary::-webkit-details-marker { display: none; }
+    .hl-faq-item summary .plus { flex: none; width: 22px; height: 22px; position: relative; }
+    .hl-faq-item summary .plus::before, .hl-faq-item summary .plus::after {
+      content: "";
+      position: absolute;
+      background: var(--ink);
+      transition: transform .3s, opacity .3s;
+    }
+    .hl-faq-item summary .plus::before { top: 50%; left: 0; width: 100%; height: 2px; transform: translateY(-50%); }
+    .hl-faq-item summary .plus::after { left: 50%; top: 0; width: 2px; height: 100%; transform: translateX(-50%); }
+    .hl-faq-item[open] summary .plus::after { opacity: 0; }
+    .hl-faq-item p { margin: 16px 0 0; color: var(--ink-2); font-size: 15.5px; line-height: 1.65; max-width: 68ch; }
+
+    /* ============ FINAL CTA + FORM ============ */
+    .hl-cta-head { text-align: center; max-width: 720px; margin: 0 auto 56px; }
+    .hl-cta-head h2 {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      font-size: clamp(30px, 4.6vw, 58px);
+      line-height: 1.05;
+    }
+    .hl-cta-head p { margin: 20px 0 0; font-size: 17px; color: rgba(255,255,255,.78); }
+
+    .hl-form-wrap { max-width: 720px; margin: 0 auto; }
+    .contact-form { background: #fff; border-radius: var(--radius-lg); padding: clamp(28px, 4vw, 56px); color: var(--ink); }
+    .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .cf-field { display: flex; flex-direction: column; margin-bottom: 26px; }
+    .cf-field.full { grid-column: 1 / -1; }
+    .cf-field label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-2); margin-bottom: 9px; }
+    .cf-field label .req { color: var(--blue); }
+    .cf-field input, .cf-field textarea {
+      font-family: var(--body);
+      font-size: 16px;
+      color: var(--ink);
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 16px;
+      transition: border-color .25s, box-shadow .25s;
+    }
+    .cf-field textarea { resize: vertical; min-height: 110px; }
+    .cf-field input::placeholder, .cf-field textarea::placeholder { color: var(--ink-3); }
+    .cf-field input:focus, .cf-field textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(68, 38, 255, 0.12);
+      background: #fff;
+    }
+    .contact-form .btn { width: 100%; justify-content: center; margin-top: 8px; }
+    .cf-note { margin: 16px 0 0; font-size: 13px; color: var(--ink-3); text-align: center; }
+    .hl-form-micro { text-align: center; margin-top: 22px; font-size: 13.5px; color: rgba(255,255,255,.6); letter-spacing: 0.02em; }
+
+    @media (max-width: 560px) {
+      .cf-row { grid-template-columns: 1fr; }
+    }
+
+    /* ============ FOOTER ============ */
+    .footer { background: var(--ink); color: #fff; padding: 70px 0 34px; border-top: 1px solid rgba(255, 255, 255, .12); }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 56px; padding-bottom: 44px; border-bottom: 1px solid rgba(255, 255, 255, .14); }
+    .footer-brand .hl-logo { color: #fff; font-size: 22px; }
+    .footer-brand p { margin: 22px 0 0; color: rgba(255, 255, 255, .7); max-width: 30ch; line-height: 1.6; }
+    .footer h5 { margin: 0 0 18px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255, 255, 255, .55); font-weight: 500; }
+    .footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+    .footer ul a { color: rgba(255, 255, 255, .78); transition: color .25s; }
+    .footer ul a:hover { color: var(--lime); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-top: 26px; font-size: 12px; color: rgba(255, 255, 255, .55); }
+    .footer-bottom a { color: rgba(255,255,255,.75); border-bottom: 1px solid rgba(255,255,255,.3); }
+    .footer-bottom a:hover { color: var(--lime); border-color: var(--lime); }
+
+    /* ============ REVEAL ============ */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.2, .6, .2, 1), transform .8s cubic-bezier(.2, .6, .2, 1); }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal[data-delay="1"] { transition-delay: .08s; }
+    .reveal[data-delay="2"] { transition-delay: .16s; }
+    .reveal[data-delay="3"] { transition-delay: .24s; }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 920px) {
+      .hl-hero-grid { grid-template-columns: 1fr; }
+      .hl-pain-grid { grid-template-columns: 1fr; }
+      .hl-steps-grid { grid-template-columns: 1fr; gap: 0; }
+      .hl-step { flex-direction: row; align-items: flex-start; gap: 18px; border-top: none; border-left: 2px solid var(--ink); padding: 0 0 32px 22px; margin-left: 4px; }
+      .hl-step:last-child { padding-bottom: 0; }
+      .hl-feat-intro { grid-template-columns: 1fr; }
+      .hl-feat-grid { grid-template-columns: 1fr 1fr; }
+      .hl-nopos-grid { grid-template-columns: 1fr; }
+      .hl-diff-grid { grid-template-columns: 1fr; gap: 32px; }
+      .hl-activation-grid { grid-template-columns: 1fr; }
+      .hl-pricing-grid { grid-template-columns: 1fr; }
+      .hl-after-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 560px) {
+      .hl-feat-grid { grid-template-columns: 1fr; }
+      .hl-compare-head span:first-child, .hl-compare-row .before { text-align: left; }
+      .hl-after-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .hl-flow-node { max-width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header" id="site-header">
+    <div class="header-inner">
+      <a href="#top" class="hl-logo" aria-label="HiLouder">Hi<span class="accent">Louder</span></a>
+      <nav class="nav">
+        <a href="#how-it-works">How it works</a>
+        <a href="#what-you-get">What you get</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="header-actions">
+        <a href="#book-a-call" class="header-cta">Book a free call</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hl-hero" id="top">
+    <div class="wrap">
+      <div class="hl-hero-grid">
+        <div>
+          <div class="eyebrow reveal">Guest retention for independent restaurants</div>
+          <h1 class="reveal" data-delay="1">Turn first-time guests into regulars.</h1>
+          <p class="lead reveal" data-delay="2">
+            Give every guest an easy way to join your customer list, then bring them back with
+            timely SMS offers — without replacing your POS or hiring a marketing team.
+          </p>
+          <div class="hl-hero-actions reveal" data-delay="3">
+            <a href="#book-a-call" class="btn btn-primary">Book a free call <span class="ar">→</span></a>
+            <span class="micro">See how it could work for your restaurant — no commitment.</span>
+          </div>
+        </div>
+
+        <div class="hl-flow reveal" data-delay="2">
+          <div class="hl-flow-node">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM19 14h2v2h-2zM14 19h2v2h-2zM19 19h2v2h-2z"/></svg>
+            <div>Guest scans QR code<small>At the table, receipt or counter</small></div>
+          </div>
+          <div class="hl-flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v16M6 14l6 6 6-6"/></svg></div>
+          <div class="hl-flow-node">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div>"Join our VIP list"<small>+1 317 · You're in 🎉</small></div>
+          </div>
+          <div class="hl-flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v16M6 14l6 6 6-6"/></svg></div>
+          <div class="hl-flow-node accent">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <div>"Happy Hour starts at 5pm today"<small>Sent to your growing guest list</small></div>
+          </div>
+          <div class="hl-flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v16M6 14l6 6 6-6"/></svg></div>
+          <div class="hl-flow-node result">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <div>Redeemed → sale tracked<small>You know exactly what worked</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST STRIP ============ -->
+  <section class="hl-trust">
+    <div class="wrap">
+      <div class="hl-trust-row">
+        <div class="hl-trust-item reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Built for independent restaurants</div>
+        <div class="hl-trust-item reveal" data-delay="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Works with your existing POS</div>
+        <div class="hl-trust-item reveal" data-delay="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>No complicated setup</div>
+        <div class="hl-trust-item reveal" data-delay="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>No long-term contract</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEM ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-label reveal">The problem</div>
+      <div class="hl-problem-intro">
+        <h2 class="display reveal" style="font-size:clamp(30px,4vw,54px); margin-bottom:26px;">Most restaurants know their regulars.<br>They just can't reach them.</h2>
+        <p class="reveal" data-delay="1">Someone comes in for the first time. You serve them. They have a great experience. They leave.</p>
+        <p class="reveal" data-delay="1">And unless they follow you on Instagram, remember your restaurant, or happen to see your ad again, you have no way to reach them.</p>
+        <p class="reveal" data-delay="2"><strong>You paid to get that customer once. Then you start from zero again.</strong></p>
+      </div>
+
+      <div class="hl-pain-grid reveal" data-delay="2">
+        <div class="hl-pain-card">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          <h3>Every visit starts from scratch</h3>
+          <p>You have traffic, but very little of it becomes an audience you own.</p>
+        </div>
+        <div class="hl-pain-card">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+          <h3>Social media isn't a customer list</h3>
+          <p>Followers don't give you a reliable way to reach the people who actually eat at your restaurant.</p>
+        </div>
+        <div class="hl-pain-card">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 11 22H2v-9L11.41 3.59a2 2 0 0 1 2.83 0l6.35 6.35a2 2 0 0 1 0 2.83z"/><circle cx="9" cy="15" r="1" fill="currentColor" stroke="none"/></svg>
+          <h3>Discounts without tracking are guesswork</h3>
+          <p>You send promotions, but don't know which ones actually bring people back.</p>
+        </div>
+      </div>
+
+      <p class="hl-note reveal">They're useful for getting people in. This is for getting them back.</p>
+    </div>
+  </section>
+
+  <!-- ============ OWNED AUDIENCE ============ -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow" style="margin-bottom:16px;">Your own audience</div>
+        <h2>Stop renting your audience. Build one you own.</h2>
+        <p class="center" style="max-width:740px;">Every guest who joins becomes part of your restaurant's own customer list.<br>No algorithm deciding who sees your post. No guessing who came back.<br>No starting from zero every week.</p>
+      </div>
+
+      <div class="hl-compare reveal" data-delay="1">
+        <div class="hl-compare-head">
+          <span>Today</span><span></span><span>With HiLouder</span>
+        </div>
+        <div class="hl-compare-row">
+          <span class="before">Anonymous guest</span>
+          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <span class="after">Known guest</span>
+        </div>
+        <div class="hl-compare-row">
+          <span class="before">Social follower</span>
+          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <span class="after">First-party contact</span>
+        </div>
+        <div class="hl-compare-row">
+          <span class="before">Hope they'll return</span>
+          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <span class="after">Give them a reason to return</span>
+        </div>
+        <div class="hl-compare-row">
+          <span class="before">"Did that promotion work?"</span>
+          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <span class="after">Trackable redemptions</span>
+        </div>
+        <div class="hl-compare-row">
+          <span class="before">Start again every week</span>
+          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <span class="after">Build a growing guest list</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="section" id="how-it-works">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow" style="margin-bottom:16px;">How it works</div>
+        <h2>From QR code to repeat visit in four simple steps.</h2>
+      </div>
+
+      <div class="hl-steps-grid">
+        <div class="hl-step reveal">
+          <span class="num">01 — Capture</span>
+          <h3>Capture</h3>
+          <p>Put your QR code where guests naturally see it: at the table, receipt, checkout or pickup counter.</p>
+        </div>
+        <div class="hl-step reveal" data-delay="1">
+          <span class="num">02 — Collect</span>
+          <h3>Collect</h3>
+          <p>Guests scan, see your digital menu and choose to join your restaurant's text list.</p>
+        </div>
+        <div class="hl-step reveal" data-delay="2">
+          <span class="num">03 — Bring them back</span>
+          <h3>Bring them back</h3>
+          <p>Send timely promotions, special offers and restaurant updates directly to your guests.</p>
+        </div>
+        <div class="hl-step reveal" data-delay="3">
+          <span class="num">04 — Measure</span>
+          <h3>Measure</h3>
+          <p>Use promotion codes to see how many sales each campaign actually generates.</p>
+        </div>
+      </div>
+
+      <div class="hl-steps-cta reveal">
+        <a href="#book-a-call" class="btn btn-primary">Book a free call <span class="ar">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT YOU GET ============ -->
+  <section class="section alt" id="what-you-get">
+    <div class="wrap">
+      <div class="hl-feat-intro">
+        <div class="section-head reveal" style="margin-bottom:0;">
+          <div class="eyebrow" style="margin-bottom:16px;">What you get</div>
+          <h2>Everything you need to turn guests into a repeatable revenue channel.</h2>
+        </div>
+        <div class="hl-mock reveal" data-delay="1">
+          <div class="hl-mock-screen">
+            <div class="hl-mock-header">
+              <span class="hl-logo">Hi<span class="accent">Louder</span></span>
+              <span class="count">Guests <b>214</b></span>
+            </div>
+            <div class="hl-bubble in">Welcome! You're on the list 🎉 Reply STOP to opt out.</div>
+            <div class="hl-bubble out">Happy Hour starts at 5pm today — show this text for $5 off.</div>
+            <div class="hl-bubble in">See you tonight!</div>
+            <div class="hl-mock-foot"><span>Campaign: HAPPYHR5</span><span><b>32</b> redeemed</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hl-feat-grid">
+        <div class="hl-feat-card reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
+          <h3>QR-powered guest capture</h3>
+          <p>Turn the menu into an easy entry point for your customer list.</p>
+        </div>
+        <div class="hl-feat-card reveal" data-delay="1">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg></div>
+          <h3>Digital menu</h3>
+          <p>Guests can view your menu and register from the same experience.</p>
+        </div>
+        <div class="hl-feat-card reveal" data-delay="2">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+          <h3>SMS campaigns</h3>
+          <p>Reach your customers directly when there's a reason to come back.</p>
+        </div>
+        <div class="hl-feat-card reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 11 22H2v-9L11.41 3.59a2 2 0 0 1 2.83 0l6.35 6.35a2 2 0 0 1 0 2.83z"/><circle cx="9" cy="15" r="1" fill="currentColor" stroke="none"/></svg></div>
+          <h3>Promotion tracking</h3>
+          <p>Attach a code to each campaign and see which ones drive sales.</p>
+        </div>
+        <div class="hl-feat-card reveal" data-delay="1">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Guest list growth</h3>
+          <p>See your audience grow over time instead of guessing whether your marketing is working.</p>
+        </div>
+        <div class="hl-feat-card reveal" data-delay="2">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M8 8h8M8 16h5"/></svg></div>
+          <h3>Simple campaign management</h3>
+          <p>Create and send campaigns from one place, without needing another marketing platform.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NO POS REPLACEMENT ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="hl-nopos-grid">
+        <div class="hl-nopos-text reveal">
+          <div class="eyebrow" style="margin-bottom:16px;">No re-platforming</div>
+          <h2 class="display" style="font-size:clamp(28px,3.6vw,44px); margin-bottom:22px;">Keep the systems you already use.</h2>
+          <p><strong>You don't need to replace your POS.</strong></p>
+          <p><strong>You don't need to rebuild your website.</strong></p>
+          <p><strong>You don't need to move your ordering system.</strong></p>
+          <p>HiLouder sits alongside what you already have and gives you one thing your current setup may not: a simple way to capture and re-engage your guests.</p>
+        </div>
+        <div class="hl-stack reveal" data-delay="1">
+          <div class="hl-chip-row">
+            <span class="hl-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M6 20h12"/></svg>Existing POS</span>
+            <span class="hl-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h5"/></svg>Existing ordering</span>
+            <span class="hl-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/></svg>Existing restaurant</span>
+          </div>
+          <div class="hl-down-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v16M6 14l6 6 6-6"/></svg></div>
+          <div class="hl-chip accent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>HiLouder — guest retention layer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT MAKES THIS DIFFERENT ============ -->
+  <section class="section ink">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow" style="margin-bottom:16px;">What makes this different</div>
+        <h2>Built for independent restaurants. Not another restaurant operating system.</h2>
+      </div>
+
+      <div class="hl-diff-grid">
+        <div class="hl-diff-card reveal">
+          <span class="num">01</span>
+          <h3>Simple</h3>
+          <p>One focused job: capture guests and bring them back.</p>
+        </div>
+        <div class="hl-diff-card reveal" data-delay="1">
+          <span class="num">02</span>
+          <h3>No re-platforming</h3>
+          <p>Works alongside your existing POS and restaurant setup.</p>
+        </div>
+        <div class="hl-diff-card reveal" data-delay="2">
+          <span class="num">03</span>
+          <h3>Measurable</h3>
+          <p>Track registrations, redemptions and campaign-driven sales.</p>
+        </div>
+      </div>
+
+      <div class="hl-diff-closing reveal">Less software. <span>More repeat business.</span></div>
+    </div>
+  </section>
+
+  <!-- ============ ACTIVATION ADVANTAGE ============ -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="hl-activation-grid">
+        <div class="hl-activation-text reveal">
+          <div class="eyebrow" style="margin-bottom:16px;">The activation advantage</div>
+          <h2 class="display" style="font-size:clamp(28px,3.6vw,44px); margin-bottom:22px;">We don't just give you a QR code and wish you luck.</h2>
+          <p>The system only works when guests actually join.</p>
+          <p>That's why your setup includes the basics that make the QR work in the real world: where to place it, what to offer, what staff should say, and how to get your first campaigns running.</p>
+        </div>
+        <div class="hl-kit reveal" data-delay="1">
+          <div class="hl-kit-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4-4.5-7-8.14-7-11.5A7 7 0 0 1 19 9.5C19 12.86 16 16.5 12 21z"/><circle cx="12" cy="9.5" r="2.2"/></svg>QR placement guide</div>
+          <div class="hl-kit-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Staff prompt script</div>
+          <div class="hl-kit-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>Guest incentive</div>
+          <div class="hl-kit-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>Welcome message</div>
+          <div class="hl-kit-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M8 8h8M8 16h5"/></svg>First campaigns</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section class="section" id="pricing" style="background:var(--blue); color:#fff;">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow" style="margin-bottom:16px; color:rgba(255,255,255,.7);">Pricing</div>
+        <h2 style="color:#fff;">Start small.<br>Grow your guest list.</h2>
+        <p class="center" style="color:rgba(255,255,255,.78);">An old customer pays more than a new customer.</p>
+      </div>
+
+      <div class="hl-pricing-grid">
+        <div class="hl-price-card reveal">
+          <div class="hl-price-name">Starter</div>
+          <div class="hl-price-amount">$150<span>/mo</span></div>
+          <div class="hl-price-cap">Up to 300 guests</div>
+          <ul class="hl-price-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Digital menu</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>QR guest capture</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Guest list</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>4 SMS campaigns / month</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Promotion tracking</li>
+          </ul>
+          <a href="#book-a-call" class="btn btn-ghost">Book a free call</a>
+        </div>
+
+        <div class="hl-price-card featured reveal" data-delay="1">
+          <span class="hl-price-badge">Recommended</span>
+          <div class="hl-price-name">Growth</div>
+          <div class="hl-price-amount">$200<span>/mo</span></div>
+          <div class="hl-price-cap">Up to 750 guests</div>
+          <ul class="hl-price-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Everything in Starter</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>More room to grow your list</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Same simple setup</li>
+          </ul>
+          <a href="#book-a-call" class="btn btn-primary">Book a free call <span class="ar">→</span></a>
+        </div>
+
+        <div class="hl-price-card reveal" data-delay="2">
+          <div class="hl-price-name">Scale</div>
+          <div class="hl-price-amount">$275<span>/mo</span></div>
+          <div class="hl-price-cap">Up to 1,500 guests</div>
+          <ul class="hl-price-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Everything in Growth</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>6 SMS campaigns / month</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>For a larger recurring customer base</li>
+          </ul>
+          <a href="#book-a-call" class="btn btn-ghost">Book a free call</a>
+        </div>
+      </div>
+
+      <p class="hl-pricing-note reveal">All plans include the activation kit and a free onboarding call — no long-term contract.</p>
+    </div>
+  </section>
+
+  <!-- ============ WHAT HAPPENS AFTER YOU BOOK ============ -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow" style="margin-bottom:16px;">What happens after you book</div>
+        <h2>Your free call is actually useful.</h2>
+      </div>
+      <div class="hl-after-intro reveal" data-delay="1">
+        <p>We'll look at how you're currently bringing guests back, what you're using today, and whether a guest-retention system makes sense for your restaurant.</p>
+      </div>
+
+      <div class="hl-after-grid">
+        <div class="hl-after-card reveal">
+          <span class="num">1</span>
+          <h3>We learn about your restaurant</h3>
+          <p>Your concept, traffic, current marketing and existing systems.</p>
+        </div>
+        <div class="hl-after-card reveal" data-delay="1">
+          <span class="num">2</span>
+          <h3>We map the guest journey</h3>
+          <p>Where the QR should live, what guests should receive and how the list would grow.</p>
+        </div>
+        <div class="hl-after-card reveal" data-delay="2">
+          <span class="num">3</span>
+          <h3>We show you the system</h3>
+          <p>A simple walkthrough using the exact workflow.</p>
+        </div>
+        <div class="hl-after-card reveal" data-delay="3">
+          <span class="num">4</span>
+          <h3>You decide</h3>
+          <p>No pressure. If it doesn't make sense, we'll tell you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow" style="margin-bottom:16px;">FAQ</div>
+        <h2>Questions restaurant owners usually ask</h2>
+      </div>
+
+      <div class="hl-faq-list reveal" data-delay="1">
+        <details class="hl-faq-item">
+          <summary>Do I need to replace my POS?<span class="plus"></span></summary>
+          <p>No. HiLouder is designed to work alongside your existing POS and restaurant tools.</p>
+        </details>
+        <details class="hl-faq-item">
+          <summary>What exactly does the guest see?<span class="plus"></span></summary>
+          <p>They scan your QR code, access your digital menu and can choose to join your restaurant's text list.</p>
+        </details>
+        <details class="hl-faq-item">
+          <summary>Do guests have to download an app?<span class="plus"></span></summary>
+          <p>No. The experience is designed around the phone and SMS.</p>
+        </details>
+        <details class="hl-faq-item">
+          <summary>Can I see which promotions actually worked?<span class="plus"></span></summary>
+          <p>Yes. Promotion codes let you track campaign-driven sales.</p>
+        </details>
+        <details class="hl-faq-item">
+          <summary>How do customers unsubscribe?<span class="plus"></span></summary>
+          <p>STOP/HELP handling and the required SMS compliance controls are built into the system.</p>
+        </details>
+        <details class="hl-faq-item">
+          <summary>How long does setup take?<span class="plus"></span></summary>
+          <p>Your platform and menu can be prepared within a few business days (typically 2–3); SMS activation takes a bit longer — up to 7 additional business days — because of carrier verification.</p>
+        </details>
+        <details class="hl-faq-item">
+          <summary>Can I cancel?<span class="plus"></span></summary>
+          <p>We'll walk through the exact commercial terms on your free call so there are no surprises.</p>
+        </details>
+        <details class="hl-faq-item">
+          <summary>Do you write the campaigns for us?<span class="plus"></span></summary>
+          <p>Your plan gets you set up with a welcome message and your first campaigns. Ongoing campaign writing can be discussed on your free call.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA + FORM ============ -->
+  <section class="section ink" id="book-a-call">
+    <div class="wrap">
+      <div class="hl-cta-head reveal">
+        <h2>You already worked to get them through the door.<br>Now give them a reason to come back.</h2>
+        <p>See what a guest-retention system could look like for your restaurant.</p>
+      </div>
+
+      <div class="hl-form-wrap reveal" data-delay="1">
+        <form class="contact-form" id="hilouder-form" name="hilouder-contact" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="hilouder-contact" />
+          <div class="cf-row">
+            <div class="cf-field">
+              <label for="hl-name">Full name <span class="req">*</span></label>
+              <input type="text" id="hl-name" name="name" placeholder="Jane Doe" required />
+            </div>
+            <div class="cf-field">
+              <label for="hl-restaurant">Restaurant name <span class="req">*</span></label>
+              <input type="text" id="hl-restaurant" name="restaurant" placeholder="Your restaurant" required />
+            </div>
+            <div class="cf-field">
+              <label for="hl-email">Email <span class="req">*</span></label>
+              <input type="email" id="hl-email" name="email" placeholder="you@restaurant.com" required />
+            </div>
+            <div class="cf-field">
+              <label for="hl-phone">Phone</label>
+              <input type="tel" id="hl-phone" name="phone" placeholder="+1 555 000 0000" />
+            </div>
+          </div>
+          <div class="cf-field full">
+            <label for="hl-message">Anything we should know before the call?</label>
+            <textarea id="hl-message" name="message" placeholder="How are you currently bringing guests back? What POS or systems do you use today?"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Book a free call <span class="ar">→</span></button>
+          <p class="cf-note">20–30 minutes · No commitment · We reply within one business day.</p>
+        </form>
+      </div>
+
+      <p class="hl-form-micro reveal" data-delay="2">20–30 minutes · No commitment · Built for independent restaurants</p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="hl-logo">Hi<span class="accent">Louder</span></span>
+          <p>Guest retention for independent restaurants.</p>
+        </div>
+        <div>
+          <h5>Menu</h5>
+          <ul>
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="#what-you-get">What you get</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Company</h5>
+          <ul>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="sms-terms.html">SMS Terms</a></li>
+            <li><a href="#book-a-call">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 HiLouder · All rights reserved</span>
+        <span>A product by <a href="../index.html">Wild Growth</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll state
+    const header = document.getElementById('site-header');
+    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 10);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Booking form with Netlify Forms support
+    const hform = document.getElementById('hilouder-form');
+    if (hform) {
+      hform.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const val = (n) => (hform.elements[n]?.value || '').trim();
+        const formData = new FormData(hform);
+
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString()
+        })
+          .then(() => {
+            const params = new URLSearchParams({
+              name: val('name'),
+              restaurant: val('restaurant'),
+              email: val('email'),
+              phone: val('phone'),
+              message: val('message')
+            });
+            window.location.href = `thank-you.html?${params.toString()}`;
+          })
+          .catch((error) => {
+            console.error('Error submitting form to Netlify:', error);
+            alert('There was an issue sending your message. Please try again.');
+          });
+      });
+    }
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+
+</html>

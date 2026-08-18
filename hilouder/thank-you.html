@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank you — HiLouder</title>
+  <meta name="description" content="Thanks for booking a free call with HiLouder. We'll reply within one business day." />
+  <meta name="robots" content="noindex" />
+
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%234426ff'/%3E%3Ctext x='50' y='69' font-family='Arial, sans-serif' font-size='56' font-weight='900' fill='white' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #ffffff; --bg-2: #f1f0ec; --bg-3: #e8e7e1;
+      --ink: #0a0a0a; --ink-2: #45454a; --ink-3: #8a8a90;
+      --blue: #4426ff; --blue-ink: #2b14d4; --lime: #c9ff3c; --lime-ink: #a7d916;
+      --line: rgba(10, 10, 10, 0.12); --line-2: rgba(10, 10, 10, 0.22);
+      --max: 1480px; --pad: clamp(20px, 5vw, 72px); --radius: 6px; --radius-lg: 18px;
+      --display: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --body: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ::selection { background: var(--lime); color: var(--ink); }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+    .display { font-family: var(--display); font-weight: 900; letter-spacing: -0.03em; line-height: 0.92; text-transform: uppercase; }
+    .lead { font-size: clamp(17px, 1.4vw, 22px); line-height: 1.5; color: var(--ink-2); max-width: 56ch; }
+
+    .btn { display: inline-flex; align-items: center; gap: 12px; padding: 16px 30px; border-radius: 999px; font-size: 15px; font-weight: 700; border: 1.5px solid var(--ink); transition: transform .35s cubic-bezier(.2,1,.2,1), background .3s, color .3s, border-color .3s; white-space: nowrap; }
+    .btn .ar { transition: transform .35s cubic-bezier(.2,1,.2,1); }
+    .btn:hover .ar { transform: translateX(5px); }
+    .btn-primary { background: var(--ink); color: #fff; }
+    .btn-primary:hover { background: var(--blue); border-color: var(--blue); transform: translateY(-3px); }
+    .btn-ghost { background: transparent; color: var(--ink); }
+    .btn-ghost:hover { background: var(--ink); color: #fff; transform: translateY(-3px); }
+
+    .header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,.85); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom: 1px solid transparent; transition: border-color .3s, background .3s; }
+    .header.scrolled { border-color: var(--line); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 78px; max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+    .hl-logo { font-family: var(--display); font-weight: 900; font-size: 21px; letter-spacing: -0.01em; text-transform: none; }
+    .hl-logo .accent { color: var(--blue); }
+    .header-cta { background: var(--blue); color: #fff; padding: 11px 22px; border-radius: 999px; font-family: var(--display); font-weight: 700; font-size: 13.5px; text-transform: uppercase; letter-spacing: 0.02em; transition: background .3s, transform .3s; }
+    .header-cta:hover { background: var(--ink); transform: translateY(-2px); }
+
+    .ty-hero { padding: clamp(150px, 18vh, 220px) 0 clamp(60px, 8vw, 110px); text-align: center; }
+    .ty-wrap { max-width: 780px; margin: 0 auto; }
+    .ty-check { width: 92px; height: 92px; margin: 0 auto 34px; color: var(--blue); }
+    .ty-check svg { width: 100%; height: 100%; overflow: visible; }
+    .ty-check svg [data-draw] { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+    .ty-check .ring { stroke-width: 2.4; }
+    .ty-check .tick { stroke-width: 3; color: var(--blue); }
+    .ty-check.go .ring { animation: tyDraw .7s cubic-bezier(.6,0,.2,1) forwards; }
+    .ty-check.go .tick { animation: tyDraw .5s cubic-bezier(.6,0,.2,1) .5s forwards; }
+    @keyframes tyDraw { to { stroke-dashoffset: 0; } }
+
+    .ty-hero h1 { margin: 0; font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: clamp(42px, 8vw, 96px); line-height: 1.02; letter-spacing: -0.03em; }
+    .ty-hero h1 .lime-mark { background: var(--lime); padding: 0 0.12em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+    .ty-hero .lead { margin: 26px auto 0; max-width: 52ch; }
+    .ty-actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 40px; }
+
+    .ty-summary { max-width: 620px; margin: clamp(40px, 6vw, 72px) auto 0; background: var(--bg-2); border-radius: var(--radius-lg); padding: clamp(26px, 3.5vw, 44px); text-align: left; }
+    .ty-summary .sum-head { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 13px; letter-spacing: 0.06em; color: var(--ink-3); margin-bottom: 22px; }
+    .ty-summary .sum-head::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--lime); flex: none; }
+    .ty-summary dl { margin: 0; display: grid; grid-template-columns: 140px 1fr; gap: 14px 20px; }
+    .ty-summary dt { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.04em; color: var(--ink-3); padding-top: 2px; }
+    .ty-summary dd { margin: 0; color: var(--ink); font-size: 15px; line-height: 1.5; word-break: break-word; }
+    .ty-summary dd.msg { white-space: pre-wrap; }
+
+    @media (max-width: 560px) {
+      .ty-summary dl { grid-template-columns: 1fr; gap: 4px 0; }
+      .ty-summary dt { padding-top: 14px; }
+      .ty-summary dt:first-child { padding-top: 0; }
+    }
+
+    .footer { background: var(--ink); color: #fff; padding: 60px 0 30px; border-top: 1px solid rgba(255,255,255,.12); text-align: center; font-size: 12px; }
+    .footer .hl-logo { color: #fff; font-size: 18px; display: block; margin-bottom: 10px; }
+    .footer span { color: rgba(255,255,255,.55); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ty-check .ring, .ty-check .tick { stroke-dashoffset: 0; animation: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="hl-logo" aria-label="HiLouder">Hi<span class="accent">Louder</span></a>
+      <a href="index.html" class="header-cta">Back to HiLouder</a>
+    </div>
+  </header>
+
+  <section class="ty-hero">
+    <div class="wrap">
+      <div class="ty-wrap">
+        <div class="ty-check" id="ty-check" aria-hidden="true">
+          <svg viewBox="0 0 64 64">
+            <circle class="ring" data-draw pathLength="1" cx="32" cy="32" r="28" />
+            <polyline class="tick" data-draw pathLength="1" points="20 33 29 42 45 24" />
+          </svg>
+        </div>
+        <h1>Thank <span class="lime-mark">you.</span></h1>
+        <p class="lead" style="margin-left:auto;margin-right:auto;">
+          Your details are on their way to our team. We read every request ourselves and
+          you'll hear back within one business day to schedule your free call.
+        </p>
+
+        <div class="ty-summary" id="ty-summary">
+          <div class="sum-head">Here's what you sent us</div>
+          <dl>
+            <dt>Name</dt>
+            <dd data-field="name">—</dd>
+            <dt>Restaurant</dt>
+            <dd data-field="restaurant">—</dd>
+            <dt>Email</dt>
+            <dd data-field="email">—</dd>
+            <dt>Phone</dt>
+            <dd data-field="phone">—</dd>
+            <dt>Notes</dt>
+            <dd class="msg" data-field="message">—</dd>
+          </dl>
+        </div>
+
+        <div class="ty-actions">
+          <a href="index.html" class="btn btn-primary">Back to HiLouder <span class="ar">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span class="hl-logo">Hi<span class="accent">Louder</span></span>
+      <span>© 2026 HiLouder · Guest retention for independent restaurants</span>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('site-header');
+    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 10);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    const check = document.getElementById('ty-check');
+    if (check) requestAnimationFrame(() => check.classList.add('go'));
+
+    const SAMPLE = {
+      name: 'Jane Doe',
+      restaurant: 'Northwind Kitchen',
+      email: 'jane@northwindkitchen.com',
+      phone: '+1 463 710 1571',
+      message: 'We currently just post specials on Instagram and hope people see them.'
+    };
+    const params = new URLSearchParams(location.search);
+    const hasData = [...params.keys()].length > 0;
+    const get = (k) => (hasData ? (params.get(k) || '').trim() : SAMPLE[k]);
+    const summary = document.getElementById('ty-summary');
+    if (summary) {
+      summary.querySelectorAll('[data-field]').forEach((el) => {
+        const raw = get(el.getAttribute('data-field'));
+        el.textContent = raw || '—';
+      });
+    }
+  </script>
+</body>
+
+</html>
