@@ -657,8 +657,10 @@
       transition: color .4s;
     }
 
-    .svc-row:hover .svc-num {
-      color: var(--blue);
+    @media (hover: hover) and (pointer: fine) {
+      .svc-row:hover .svc-num {
+        color: var(--blue);
+      }
     }
 
     /* Sliding text: two stacked layers inside an overflow-hidden window */
@@ -693,12 +695,14 @@
       color: var(--blue);
     }
 
-    .svc-row:hover .svc-text .label {
-      transform: translateY(-100%);
-    }
+    @media (hover: hover) and (pointer: fine) {
+      .svc-row:hover .svc-text .label {
+        transform: translateY(-100%);
+      }
 
-    .svc-row:hover .svc-text .desc {
-      transform: translateY(0);
+      .svc-row:hover .svc-text .desc {
+        transform: translateY(0);
+      }
     }
 
     /* Animated line icon reveals + self-draws on hover (WildFi style) */
@@ -742,17 +746,19 @@
       transition-delay: .24s;
     }
 
-    .svc-row:hover .svc-icon {
-      opacity: 1;
-      transform: translateX(0);
-    }
+    @media (hover: hover) and (pointer: fine) {
+      .svc-row:hover .svc-icon {
+        opacity: 1;
+        transform: translateX(0);
+      }
 
-    .svc-row:hover .svc-icon svg [data-draw] {
-      stroke-dashoffset: 0;
-    }
+      .svc-row:hover .svc-icon svg [data-draw] {
+        stroke-dashoffset: 0;
+      }
 
-    .svc-row:hover .svc-icon svg {
-      animation: svcFloat 2.6s ease-in-out .3s infinite;
+      .svc-row:hover .svc-icon svg {
+        animation: svcFloat 2.6s ease-in-out .3s infinite;
+      }
     }
 
     @keyframes svcFloat {
@@ -788,10 +794,12 @@
       transition: opacity .45s, transform .45s cubic-bezier(.2, 1, .2, 1), color .45s;
     }
 
-    .svc-row:hover .svc-arrow {
-      opacity: 1;
-      transform: translateX(0);
-      color: var(--blue);
+    @media (hover: hover) and (pointer: fine) {
+      .svc-row:hover .svc-arrow {
+        opacity: 1;
+        transform: translateX(0);
+        color: var(--blue);
+      }
     }
 
     @media (max-width: 620px) {
@@ -806,7 +814,7 @@
         display: none;
       }
 
-      .svc-num {
+      .svc-list .svc-row .svc-num {
         color: var(--ink);
         margin-top: 2px;
       }
@@ -821,26 +829,26 @@
         font-size: clamp(18px, 5vw, 24px);
       }
 
-      .svc-text .label,
-      .svc-text .desc {
+      .svc-list .svc-row .svc-text .label,
+      .svc-list .svc-row .svc-text .desc {
         position: static;
         transform: none;
         white-space: normal;
         transition: none;
       }
 
-      .svc-text .label {
+      .svc-list .svc-row .svc-text .label {
         color: var(--ink);
       }
 
-      .svc-text .desc {
+      .svc-list .svc-row .svc-text .desc {
         color: var(--blue);
         font-size: 0.62em;
         line-height: 1.25;
         text-transform: none;
       }
 
-      .svc-arrow {
+      .svc-list .svc-row .svc-arrow {
         opacity: 1;
         transform: none;
         color: var(--ink);
